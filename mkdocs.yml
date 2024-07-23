@@ -1,0 +1,52 @@
+site_name: 'igv.js'
+
+repo_url: https://github.com/igvteam/igv.js
+
+theme: 
+  name: 'windmill'
+  custom_dir: custom
+  static_templates: [404.html]
+  search_index_only: true
+  include_search_page: true
+
+nav:
+
+- Quickstart: QuickStart.md
+- Tracks:
+  - General: tracks/Tracks.md
+  - Annotation:  tracks/Annotation-Track.md
+  - Wig:  tracks/Wig-Track.md
+  - Alignment: tracks/Alignment-Track.md
+  - Variant: tracks/Variant-Track.md
+  - Mutations: tracks/Mutation-Track.md
+  - Segmented Copy Number: tracks/Seg-Track.md
+  - GWAS: tracks/GWAS.md
+  - Interact: tracks/Interact.md
+  - QTL: tracks/QTL-Track.md
+  - Junctions: tracks/Splice-Junctions.md
+  - CNV Pytor: tracks/CNVPytor.md
+  - Merged Wig: tracks/Merged.md
+  - RNA Structure: tracks/Arc-Track.md
+- Regions of Interest: Regions-of-Interest.md
+- Events: Events.md
+- Oauth: OAuth.md
+- Data URIs: Data-URIs.md
+- Query parameters: Query-Parameters.md
+- Data server requirements: Data-Server-Requirements.md
+- Development: Development.md
+
+
+
+markdown_extensions:
+  - toc:
+      permalink: '#'
+      permalink_title: 'Direct link to this section'
+  - extra
+  - sane_lists
+  - wikilinks
+  - admonition
+
+extra:
+  history_buttons: false
+  article_nav_top: false
+  article_nav_bottom: false
