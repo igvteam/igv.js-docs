@@ -12,6 +12,8 @@ theme:
 nav:
 
 - Quickstart: QuickStart.md
+- Browser creation: Browser-Creation.md
+- Browser API: Browser-API.md
 - Tracks:
   - General: tracks/Tracks.md
   - Annotation:  tracks/Annotation-Track.md

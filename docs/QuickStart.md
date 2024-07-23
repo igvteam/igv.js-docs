@@ -1,4 +1,3 @@
-# Quickstart
 
 ## Installation
 igv.js consists of a single javascript file with no external dependencies.
@@ -55,4 +54,9 @@ an igv.js browser with an alignment track opened at a specific locus:
       
 ```
 
+## More
+
+* [Browser creation](Browser-Creation.md)
+* [Browser API](Browser-API.md)
+* [Tracks](tracks/Tracks.md)
 
