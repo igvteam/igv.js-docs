@@ -1,14 +1,14 @@
-# Interact Track  
+<p class="page-title">Interact Track</p>
 
 The interact track (`type = 'interact'`) visualizes pairwise interactions between genome regions as arcs.
 
-### File formats
+## File formats
 
 * [bedpe](https://bedtools.readthedocs.io/en/latest/content/general-usage.html)
 * [interact](https://genome.ucsc.edu/goldenPath/help/interact.html) 
 * [bigInteract](https://genome.ucsc.edu/goldenPath/help/interact.html)
 
-### Options
+## Options
 
 [General options](Tracks.md#options-for-all-track-types)
 
@@ -18,7 +18,7 @@ arcOrientation | Direction of arcs (boolean, true ->up) | true
 thickness | Line thickness | 2
 
 
-#### Example
+## Example
 
 ```javascript
 {

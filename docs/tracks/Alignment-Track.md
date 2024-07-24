@@ -1,11 +1,12 @@
-# Alignment Track
+<p class="page-title">Alignment Track</p>
 
 The alignment track (`type = 'alignment'`) is used to display views of read alignments from BAM or CRAM files.
 
 ## File formats
 
-* BAM
-* CRAM
+* [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf)
+* [CRAM](https://samtools.github.io/hts-specs/CRAMv3.pdf)
+
 
 ## Options
 

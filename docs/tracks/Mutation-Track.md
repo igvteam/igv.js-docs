@@ -1,20 +1,25 @@
+<p class="page-title">Mutation Track</p>
 
-```
-type = 'mut'
-```
+The mutation track(`type="mut"`) displays data from the National Cancer Institute's "mut" and "maf" file formats.
 
-Displays mutation data from  [TCGA mut](https://docs.gdc.cancer.gov/Encyclopedia/pages/Mutation_Annotation_Format_TCGAv2/) or [maf](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) formats
+## File Formats
 
-
-
-Property | Type | Description | Default
--------- | ---- | ----------- | -------
-format    | string    | Either ```mut``` or ```maf``` | Inferred from file extension
-displayMode | string | One of EXPANDED, SQUISHED, COLLAPSED.   | EXPANDED
+* [mut](https://docs.gdc.cancer.gov/Encyclopedia/pages/Mutation_Annotation_Format_TCGAv2/)
+* [maf](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) 
 
 
+## Options
 
-Example
+[General options](Tracks.md#options-for-all-track-types)
+
+| Property    | Type   | Description                           | Default                      |
+|-------------|--------|---------------------------------------|------------------------------|
+| format      | string | Either ```mut``` or ```maf```         | Inferred from file extension |
+| displayMode | string | One of EXPANDED, SQUISHED, COLLAPSED. | EXPANDED                     |
+
+
+
+## Example
 
 ```javascript
 

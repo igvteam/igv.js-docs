@@ -1,12 +1,12 @@
-**Annotation Track**
+<p class="page-title">Annotation Track</p>
 
 The annotation track (`type = 'annotation'`) display views of genomic annotations.
 
 ## File Formats
 
 * [bed](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)
-* [gff3]()
-* [gtf]()
+* [gff3](https://gmod.org/wiki/GFF3)
+* [gtf](mod.org/wiki/GFF3#GTF)
 * [genePred](https://genome.ucsc.edu/FAQ/FAQformat.html#format9)
 * [genePredExt](https://genome.ucsc.edu/FAQ/FAQformat.html#format9)
 * [peaks](https://genome.ucsc.edu/FAQ/FAQformat.html)

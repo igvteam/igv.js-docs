@@ -1,3 +1,4 @@
+<p class="page-title">Wig Track</p>
 
 The wig track (`type = 'wig'`) displays quantititive data as either a bar chart, line plot, or points.
 
@@ -9,6 +10,8 @@ The wig track (`type = 'wig'`) displays quantititive data as either a bar chart,
 
 
 ## Options
+
+[General options](Tracks.md#options-for-all-track-types)
 
 | Property       | Description                                                                                                                                                                                       | Default            |
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|

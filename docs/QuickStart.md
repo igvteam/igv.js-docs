@@ -1,5 +1,6 @@
 
 ## Installation
+
 igv.js consists of a single javascript file with no external dependencies.
 
 Pre-built files for script include, AMD, or CJS module systems (igv.min.js) and an ES6 module (igv.esm.min.js)

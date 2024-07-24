@@ -1,14 +1,10 @@
-An igv.js instance can be initialized on page load with query parameters.  
+<p class="page-title">Query Parameters</p>
 
-**To enable query parameters you must set** 
+An igv.js instance can be initialized on page load with query parameters.  To enable use of query parameters set  
 
 ```supportQueryParameters: true``` 
 
 in the browser configuration.  All query parameter values must be URI Encoded.
-
-Note that by using the sessionURL query parameter in combination with ```browser.compressedSession()``` its possible to 
-support bookmarking and sharable URLs.   See the **Share** menu item at [https://igv.org/app](https://igv.org/app) for an example of 
-this use.
 
 Parameter | Description
 --------- | -----------

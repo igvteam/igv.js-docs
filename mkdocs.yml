@@ -1,6 +1,6 @@
 site_name: 'igv.js'
 
-repo_url: https://github.com/igvteam/igv.js
+repo_url: https://github.com/igvteam/igv.js-docs
 
 theme: 
   name: 'windmill'
@@ -30,7 +30,7 @@ nav:
   - CNV Pytor: tracks/CNVPytor.md
   - Merged Wig: tracks/Merged.md
   - RNA Structure: tracks/Arc-Track.md
-- Sample information: SampleInformation.md
+- Sample information: SampleInfo.md
 - Regions of Interest: Regions-of-Interest.md
 - Events: Events.md
 - Oauth: OAuth.md

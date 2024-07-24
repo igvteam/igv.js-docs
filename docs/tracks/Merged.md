@@ -1,4 +1,4 @@
-# Merged
+<p class="page-title">Merged Track</p>
 
 The merged track (`type = 'merged'`) is used to overlay multiple wig tracks.
 

@@ -1,4 +1,4 @@
-# GWAS Track
+<p class="page-title">GWAS Track</p>
 
 The GWAS track (`type = 'gwas'`) is used for visualizing genome wide association data as a "manhattan" style plot
 
@@ -41,7 +41,7 @@ To specify column positions for the required fields include the following case-i
 | colorTable           | Object mapping chromosome names -> colors.  If supplied all chromosomes in data should be included.  See below for the default color table                      | See [below](https://github.com/igvteam/igv.js/wiki/GWAS#default-color-table) |
 
 
-#### Example
+## Example
 
 ```javascript
 {
@@ -58,7 +58,7 @@ To specify column positions for the required fields include the following case-i
 }
 ```
 
-#### Default color table
+## Default color table
 
 ```
 {

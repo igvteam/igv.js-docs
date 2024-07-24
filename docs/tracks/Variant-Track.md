@@ -1,37 +1,40 @@
+<p class="page-title">Variant Track</p>
 
-The variant track displays variant records from "VCF" files or equivalents. 
+The variant track (`type="variant"`) displays variant records from "VCF" files or equivalents. 
 
 ## File formats
 
-* vcf
+* [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 
 ## Options
 
-Property  | Description | Default
------- | ------- | ------------
-displayMode | Display option.  'COLLAPSED' => show variants only,  'SQUISHED' and 'EXPANDED' => show calls. | 'EXPANDED'
-squishedCallHeight | Height of genotype call rows in SQUISHED mode.  | 1
-expandedCallHeight | Height of genotype call rows in EXPANDED mode | 10
+[General options](Tracks.md#options-for-all-track-types)
 
-### Variant color options. (igv.js version 2.9.2)
+| Property           | Description                                                                                   | Default    |
+|--------------------|-----------------------------------------------------------------------------------------------|------------|
+| displayMode        | Display option.  'COLLAPSED' => show variants only,  'SQUISHED' and 'EXPANDED' => show calls. | 'EXPANDED' |
+| squishedCallHeight | Height of genotype call rows in SQUISHED mode.                                                | 1          |
+| expandedCallHeight | Height of genotype call rows in EXPANDED mode                                                 | 10         |
 
-Property  | Description | Default
------- | ------- | ------------
-color | Specify a variant color, or function that takes a variant object and returns a color. |
-colorBy | Specify an INFO field to color variants by.  Optional, if specified takes precedence over ```color``` property |
-colorTable | Color table mapping INFO field values to colors.  Use in conjunction with colorBy.  Optional, if not specified a color table will be generated. |
+### Variant color options
+
+| Property   | Description                                                                                                                                     | Default |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| color      | Specify a variant color, or function that takes a variant object and returns a color.                                                           |         |
+| colorBy    | Specify an INFO field to color variants by.  Optional, if specified takes precedence over ```color``` property                                  |         |
+| colorTable | Color table mapping INFO field values to colors.  Use in conjunction with colorBy.  Optional, if not specified a color table will be generated. |         |
 
 ### Genotype color options
-Property  | Description | Default
------- | ------- | ------------
-noCallColor | Color for no-calls | "rgb(250, 250, 250)"
-homvarColor | CSS color for homozygous non-reference calls.  | "rgb(17,248,254)"
-hetvarColor | CSS color for heterozygous calls. | "rgb(34,12,253)"
-homrefColor | CSS color for homozygous reference calls. | "rgb(200, 200, 200)"
+| Property    | Description                                   | Default              |
+|-------------|-----------------------------------------------|----------------------|
+| noCallColor | Color for no-calls                            | "rgb(250, 250, 250)" |
+| homvarColor | CSS color for homozygous non-reference calls. | "rgb(17,248,254)"    |
+| hetvarColor | CSS color for heterozygous calls.             | "rgb(34,12,253)"     |
+| homrefColor | CSS color for homozygous reference calls.     | "rgb(200, 200, 200)" |
 
+## Examples
 
-## Tabix indexed file example
-
+### Tabix indexed file
 
 ```javascript
 {
@@ -48,10 +51,7 @@ homrefColor | CSS color for homozygous reference calls. | "rgb(200, 200, 200)"
 
  ```
 
-
-#### Variant color options. (igv.js 2.9.2)
-
-##### Color-by info field with color table
+### Color-by info field with color table
 
 ```javascript
 {
@@ -73,7 +73,7 @@ homrefColor | CSS color for homozygous reference calls. | "rgb(200, 200, 200)"
 
 ```
 
-##### Color-by function.  NOTE: functions cannot be saved in session files.
+### Color-by function.  NOTE: functions cannot be saved in session files.
 
 ```javascript
 {

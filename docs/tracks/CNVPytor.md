@@ -1,4 +1,4 @@
-# cnvpytor Track  
+<p class="page-title">CNVpytor Track</p>
 
 The CNVpytor track (type = `'cnvpytor'`) is a tool for copy number analysis from read depth and B-allele frequency 
 (BAF) of variants. As input, it takes BAM and/or VCF files. The analyzed data is stored in pytor file and can be viewed 
@@ -10,18 +10,31 @@ For details: https://github.com/abyzovlab/CNVpytor
 ## File formats
 `cnvpytor` track can be loaded from either `pytor` or VCF files.
 
-- pytor
+### pytor
   *    [CNVpytor](https://github.com/abyzovlab/CNVpytor)-produced pytor file.
   *    Option to switch among available bin sizes.
   *    Option to switch among available CNV callers.
-  *    Signals: <ul><li>Raw Read Depth</li> <li>GC Corrected Read depth</li><li>CNV call </li><li>Maximum of BAF likelihood</li></ul>
+  *    Signals: 
+    * Raw Read Depth
+    * GC Corrected Read depth
+    * CNV call 
+    * Maximum of BAF likelihood
 
-- vcf
-  *    Whole genome VCF file with minimal information. Both  AD (Read Depth information) and GT (Genotype information) fields are needed in the VCF file. Loading the data may take time, as it reads the whole VCF file and calculates the signals.
-  *    Currently only a single genotype field is supported.   Multi-sample VCFs are not supported.
-  *    Currently, only ReadDepth CNV caller is available.
-  *    Signals: <ul><li>Raw Read Depth</li> <li>Partition</li><li>CNV call </li><li>Maximum of BAF likelihood</li></ul>
+### vcf
 
+Whole genome [VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file with constraints.
+
+* Indexed VCF files are not supported as data for the entire genome is required for the calculations. 
+* Both  AD (Read Depth information) and GT (Genotype information) fields are required . 
+* Currently only a single genotype field is supported. Multi-sample VCFs are not supported. 
+* Currently, only ReadDepth CNV caller is available. 
+* Signals:
+    * Raw Read Depth
+    * Partition
+    * CNV call 
+    * Maximum of BAF likelihood
+
+Loading the data may take time, as it reads the entire VCF file and calculates the signals.
 
 
 ## Options

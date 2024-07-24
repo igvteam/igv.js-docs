@@ -1,4 +1,4 @@
-# Arc Track
+<p class="page-title">Arc Track</p>
 
 The arc track (`type='arc'`) is used to visualize RNA secondary structures in arcs connecting base pairs. 
 Alternative  structures, where one nucleotide is involved in more than one base pair, and pseudo knots, where arcs cross, 

@@ -55,8 +55,10 @@ Load a session by url or a javascript File blob, which should point to a valid s
 is a representation of a browser configuration object described in the [Browser Creation](Browser-Creation) section, but does not 
 support parameter values not representable as json such as functions and promises.
 
+The method takes an object with a single property, `url`, which can be a URL or a local File blob.
+
 ```js
-browser.loadSession({url | file})
+browser.loadSession({url})
 ```
 
 ## loadTrack
@@ -77,6 +79,18 @@ browser.loadTrack({
   label: 'HG02450'
     })
 
+```
+
+## loadSampleInfo
+
+__async__
+
+Load a [sample information](SampleInfo.md) file.  
+
+The method takes an object with a single property, `url`, which can be a URL or a local File blob.
+
+```js
+browser.loadSampleInfo({url})
 ```
 
 
@@ -132,7 +146,7 @@ browser.removeTrackByName(name)
 __async__
 
 Load an annotation file or array of annotation files to define regions of interest (ROIs).  Regions of interest are
-overlaid on the genome view across all tracks.  
+overlaid on the genome view across all tracks.  See [Regions of Interest](Regions-of-Interest.md) for more details.
 
 ```js
 browser.loadROI(trackConfig | arrayOfTrackConfigs )
@@ -141,18 +155,18 @@ browser.loadROI(trackConfig | arrayOfTrackConfigs )
 **Examples**
 ```js
 browser.loadROI([
-                        {
-                            name: 'ROI set 1',
-                            url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_1.bed',
-                            indexed: false,
-                            color: "rgba(68, 134, 247, 0.25)"
-                        },
-                        {
-                            name: 'ROI set 2',
-                            url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_2.bed',
-                            indexed: false,
-                            color: "rgba(0, 150, 50, 0.25)"
-                        }
+{
+    name: 'ROI set 1',
+    url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_1.bed',
+    indexed: false,
+    color: "rgba(68, 134, 247, 0.25)"
+},
+{
+    name: 'ROI set 2',
+    url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_2.bed',
+    indexed: false,
+    color: "rgba(0, 150, 50, 0.25)"
+})
 ```
 ## clearROIs
 
@@ -164,10 +178,13 @@ browser.clearROIs()
 
 ## getUserDefinedROIs
 
-Returns an array of user defined ROIs (regions of interest).
+__async__
+
+Returns a promise for an array containing all user-defined ROIs (regions of interest created interactively during
+an igv.js session).
 
 ```js
-const rois = browser.getUserDefinedROIs()
+const rois = await browser.getUserDefinedROIs()
 ```
 
 ## search

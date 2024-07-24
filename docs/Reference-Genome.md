@@ -1,3 +1,5 @@
+<p class="page-title">Genome</p>
+
 In igv.js a _genome_ refers to a reference sequence and, optionally, one or more associated tracks and metadata such
 as chromosome aliases and chromosome cytobands. The reference genome can be defined with either they _genome_ identifier or 
 a _reference_ object properties.   One of these options is required.   
@@ -133,7 +135,7 @@ cytobandURL | URL to a cytoband ideogram file in UCSC format.  _Optional_  |
 aliasURL | URL to a tab-delimited file defining aliases for chromosome names.  File should have 1 line per chromosome with all names for the chromosome, separated by tabs, in arbitrary order.  See the example below.   _Optional_ |
 chromSizesURL | URL to a UCSC .chrom.sizes file.   This can be used in combination with twoBitURL to support the whole genome view.  |
 indexed | Flag indicating if the FASTA is indexed.  Ignored if indexURL is supplied.  The primary purpose of this property is to indicate that the fasta is not indexed.  _**Deprecated as of Version 3.0**_ |
-tracks | A list of tracks to be loaded with the genome.  See the [tracks](Tracks-2.0) description for details.  _Optional_
+tracks | A list of tracks to be loaded with the genome.  See the [tracks](tracks/Tracks.md) description for details.  _Optional_
 chromosomeOrder | **Release 2.2** An array of chromosome names defining the order in the whole genome view and chromosome pulldown selector, if used.   _Optional_
 headers | http headers to include with each request. For example {"authorization": "bearer: token"}.  _Optional_ |
 wholeGenomeView | Construct a "whole genome" view from the individual sequences.  This is useful for finished assemblies with a few (< 50) large chromosomes.  Its not useful for assemblies with a single or conversely thousands of sequences. _Optional_ |  true

@@ -1,4 +1,5 @@
-# Regions of Interest
+<p class="page-title">Regions of Interest</p>
+
 
 A Region of Interest (ROI) is a specified genomic extent that can be configured to highlight a region displayed in the browser in one of two ways:
 
