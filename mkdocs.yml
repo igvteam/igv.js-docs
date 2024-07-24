@@ -14,6 +14,7 @@ nav:
 - Quickstart: QuickStart.md
 - Browser creation: Browser-Creation.md
 - Browser API: Browser-API.md
+- Reference genome: Reference-Genome.md
 - Tracks:
   - General: tracks/Tracks.md
   - Annotation:  tracks/Annotation-Track.md
@@ -29,6 +30,7 @@ nav:
   - CNV Pytor: tracks/CNVPytor.md
   - Merged Wig: tracks/Merged.md
   - RNA Structure: tracks/Arc-Track.md
+- Sample information: SampleInformation.md
 - Regions of Interest: Regions-of-Interest.md
 - Events: Events.md
 - Oauth: OAuth.md

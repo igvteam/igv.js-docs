@@ -1,33 +1,20 @@
-## Browser API ##
-
 After initialization, the browser can be controlled using the functions described below. 
 
-* [loadGenome(config)](#loadgenome)
-* [loadSessionObject(session)](#loadsessionobjectsession)
-* [loadSession({url})](#loadsessionurl)
-* [loadTrack(config)](#loadtrackconfig)
-* [findTracks(propertyOrFunction, value)](#findtrackspropertyorfunction-value)
-* [removeTrackByName(name)](#removetrackbynamename)
-* [removeTrack(track)](#removetracktrack)
-* [loadROI(configOrArray)](#loadroiconfigorarray)
-* [clearROIs()](#clearrois)
-* [getUserDefinedROIs()](#getuserdefinedrois)
-* [search(symbol)](#searchsymbol)
-* [zoomIn()](#zoomin)
-* [zoomOut()](#zoomout)
-* [currentLoci()](#currentloci)
-* [visibilityChange()](#visibilitychange)
-* [toJSON()](#tojson)
-* [compressedSession()](#compressedsession)
-* [toSVG()](#tosvg)
-* [setCustomCursorGuideMouseHandler(handler)](#setcustomcursorguidemousehandlerhandler)
 
-### loadGenome ###
+## loadGenome
 
-Returns a promise to load a reference genome.  
-See the [Reference Genome](https://github.com/igvteam/igv.js/wiki/Reference-Genome) for more detail on configuration options.
 
-Example
+__async__
+
+Returns a promise to load a reference genome. 
+
+```js
+browser.loadGenome(config)
+```
+
+See the [reference object](Reference-Genome.md) description for details on configuration options.
+
+**Example**
 
 ```
 browser.loadGenome(
@@ -49,36 +36,64 @@ browser.loadGenome(
 }
 ```
 
-### loadSessionObject(session) ###
+## loadSessionObject
 
-Load a session object, also referred to as a browser configuration object.   See [Browser Creation](Browser-Creation) for more details.   Loading a session will clear the current reference genome and all tracks.
+__async__
 
-### loadSession(url) ###
+Load a session object, also referred to as a browser configuration object.  See [Browser Creation](Browser-Creation) for details.   
+Loading a session will clear the current reference genome and all tracks.
 
-Load a session by url, which should point to a valid session json object.  The json is a representation of a browser configuration object described in the [Browser Creation](Browser-Creation) section, but does not support parameter values not representable as json such as functions and promises.
-
-### loadTrack(config) ###
-
-Returns a promise to load and configure a track.
-See the [Tracks page](tracks/Tracks.md) for more detail on configuration options.
-
+```js
+browser.loadSessionObject(config)
 ```
+
+## loadSession
+
+__async__
+
+Load a session by url or a javascript File blob, which should point to a valid session json object.  The json 
+is a representation of a browser configuration object described in the [Browser Creation](Browser-Creation) section, but does not 
+support parameter values not representable as json such as functions and promises.
+
+```js
+browser.loadSession({url | file})
+```
+
+## loadTrack
+
+__async__
+
+Load a track and return a promise for the track object. See the [Tracks page](tracks/Tracks.md) for more detail on configuration options.
+
+```js
+const track = await browser.loadTrack(config)
+```
+
+**Example**
+
+```js
 browser.loadTrack({
   url: 'http://data.broadinstitute.org/igvdata/1KG/b37/data/HG02450/alignment/HG02450.mapped.ILLUMINA.bwa.ACB.low_coverage.20120522.bam',
   label: 'HG02450'
     })
-.then(function (newTrack) {
-  alert("Track loaded: " + newTrack.name;
-})
-.catch(function (error)  {
-   // Handle error
-})
- ```
-
-### findTracks(propertyOrFunction, value) ###
 
 ```
-            console.log("Find tracks by ID 'T2':");
+
+
+## findTracks
+
+Returns an array of tracks matching input critera.  Criteria can be specified as either
+
+1. A property value pair
+2. A function taking the track object as an argument and returning true or false
+
+```js
+const tracks = browser.findTracks(propertyOrFunction, value)
+```
+
+**Examples**
+```js
+            console.log("Find tracks by property 'id' with value 'T2':");
             const tracksById = browser.findTracks("id", "T2");
             for(let t of tracksById) {
                 console.log(`  id=${t.id}   name=${t.name}`);
@@ -96,17 +111,35 @@ browser.loadTrack({
             });
 ```
 
-### removeTrackByName(name)  ###
+## removeTrack
 
-Remove track(s) whose "name" property matches the given name.  
+Remove a track object from the browser.  
 
-### removeTrack(track) ###
-
-### loadROI(configOrArray) ###
-
-Returns a promise to load an annotation file or array of annotation files to define regions of interest (ROIs).  Regions of interest are overlaid on the genome view across all tracks.  
-
+```js
+browser.removeTrack(track)
 ```
+
+## removeTrackByName
+
+Remove track(s) whose "name" property matches the given name.
+
+```js
+browser.removeTrackByName(name)
+```
+
+## loadROI
+
+__async__
+
+Load an annotation file or array of annotation files to define regions of interest (ROIs).  Regions of interest are
+overlaid on the genome view across all tracks.  
+
+```js
+browser.loadROI(trackConfig | arrayOfTrackConfigs )
+```
+
+**Examples**
+```js
 browser.loadROI([
                         {
                             name: 'ROI set 1',
@@ -121,81 +154,108 @@ browser.loadROI([
                             color: "rgba(0, 150, 50, 0.25)"
                         }
 ```
-### clearROIs() ###
+## clearROIs
 
 Remove all regions of interest.
 
-### getUserDefinedROIs() ###
+```js
+browser.clearROIs()
+```
 
-Returns a promise to return an array of user defined features.
+## getUserDefinedROIs
 
-### search(symbol) ###
+Returns an array of user defined ROIs (regions of interest).
+
+```js
+const rois = browser.getUserDefinedROIs()
+```
+
+## search
+
+__async__
        
-Search by annotation symbol or locus string.
+Search by a locus, and change browser locus to corresponding region.
 
-```
-   browser.search('EGFR');
-```
-By default the search function uses a webservice to query positions of RefSeq genes for genome "hg19".  This can be overriden during initialization by supplying a url to a custom webservice.  For details see [Browser initialization](https://github.com/igvteam/igv.js/wiki/Browser).
+By default the search function uses a webservice to query positions of RefSeq genes for genome "hg19".  
+This can be overriden during initialization by supplying a url to a custom webservice.  
+For details see [Browser initialization](https://github.com/igvteam/igv.js/wiki/Browser).
 
-Additionally, one or more annotation tracks can be used to back the "search" function by setting the searchable property to true.  See [Tracks](https://github.com/igvteam/igv.js/wiki/Tracks) for more details.
-
-The search function can also be passed an explicit location,  for example
-```
-   browser.search('chr10:1000-2000')
+```js
+browser.search(locus)
 ```
 
-Multiple loci can be passed as a space delimited list.  This will result in a multi-locus view.
-
+**Examples**
+```js
+browser.search('EGFR')
+browser.search('chr10:1000-2000')
 ```
-browser.search('chr10:1000-2000' 'EGFR')
+
+Multiple loci can be passed as space delimited list.  This will result in a multi-locus view.
+
+```js
+browser.search('chr10:1000-2000 EGFR')
 ```
 
-This function returns ```true``` if the symbol was found, ```false``` otherwise.
+This function returns a promise which resolves to ```true``` if the symbol was found, ```false``` otherwise.
 
-### zoomIn() ###
+## zoomIn
 
 Zoom in by a factor of 2 
-```
-    browser.zoomIn();
+
+```js
+browser.zoomIn()
 ```
 
-### zoomOut() ###
+## zoomOut
 
 Zoom out by a factor of 2 
+
+```js
+browser.zoomOut()
 ```
-    browser.zoomOut();
+
+### currentLoci
+
+Return the current genomic region as a locus string, or an array of locus strings if in multi-locus view
+
+```js
+const locusStringOrArray = browser.currentLoci()
 ```
 
-### currentLoci()
+## visibilityChange
 
-Return the current genomic region as a locus string, or multiple regions if in multi-locus view
+Signal a change in visibility, typically from hidden  (e.g. display:none) to shown  (e.g. display:block).  
+This is necessary because changes in display attribute do not trigger events.
 
-### visibilityChange() ###
-
-Signal a change in visibility, typically from hidden  (e.g. display:none) to shown  (e.g. display:block).  This is necessary because changes in display attribute do not trigger events.
+```js
+browser.visibilityChange()
 ```
+
+If multiple igv browsers are on a page, the function ```igv.visibilityChange``` can be used to signal all.
+
+```js
     igv.visibilityChange();
 ```
-To target a specific igv browser instance
-```
-    browser.visibilityChange();
-```     
 
-### toJSON() ###
 
-Return the current state of the browser as a JSON object.  This object can be loaded with loadSessionObject.
+## toJSON
 
-```
+Return the current state of the browser as a JSON style object.  This object can be loaded with loadSessionObject.
+Note the returned value is a jsonifiable object, not a json string.
+
+```js
    const json = browser.toJSON();
-
-   browser.loadSessionObject(json)
-
 ```
 
-### compressedSession() ###
+## compressedSession
 
-Return a compressed, encoded, string representing the current browser state.   This string can be used to load the session on any page hosting an igv.js instance with a url of the form
+Return a compressed, encoded, string representing the current browser state.   
+
+```js
+const sessionString = browser.compressedSession()
+```
+
+This string can be used to load the session on any page hosting an igv.js instance with a url of the form
 
 ```
 https://myhost/mypage?sessionURL=blob:<compressed session string>
@@ -203,25 +263,30 @@ https://myhost/mypage?sessionURL=blob:<compressed session string>
 
 Note to reinstate the session ```queryParametersSupported``` must be set to true in the igv.js configuration.
 
-### toSVG() ###
+## toSVG
 
-Convert the browser contents to SVG format. This includes ideogram, ruler, and all tracks. The value returned by this function is a serialized SVG object.
+Convert the browser contents to SVG format. This includes ideogram, ruler, and all tracks. The value returned by this 
+function is a serialized SVG object.
+
+
+```js
+const svg = browser.toSVG()
 ```
-    browser.toSVG();
-```
 
 
-
-### setCustomCursorGuideMouseHandler(handler) ###
+## setCustomCursorGuideMouseHandler
 
 Pass genomic location and mouse location with respect to trackContainer to the provided handler.
 The data is transmitted as the cursor guide is manipulated across the track container.
 
-Parameters:
-bp - cursor-guide location. base-pair units.
-start - track start location. base-pair units.
-end - track end location. base-pair units.
-interpolant - cursor-guide location. 0 - 1 units.
-```
-    browser.setCustomCursorGuideMouseHandler(({ bp, start, end, interpolant }) => {  });
+The handler function will receive an object with the following properties
+* bp - cursor-guide location. base-pair units.
+* start - track start location. base-pair units.
+* end - track end location. base-pair units.
+* interpolant - cursor-guide location. 0 - 1 units.
+
+**Example**
+
+```js
+browser.setCustomCursorGuideMouseHandler(({ bp, start, end, interpolant }) => {  });
 ```

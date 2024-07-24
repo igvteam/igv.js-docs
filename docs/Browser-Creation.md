@@ -1,9 +1,8 @@
-The `igv.createBrowser` function is used to create an igv Browser object and insert it into your dom.  
-The function takes two arguments: (1) The parent element (usually a div); the browser object will be inserted into 
-the DOM as a child of this element, and (2) A configuration object that defines the browser's initial state. 
-'igv.createBrowser' returns a promise which resolves to the browser object upon completion.  The browser object should be 
-saved by the client program for future calls to the API.  
-
+The `igv.createBrowser` function is used to create an igv Browser object and insert it into your dom. The function takes 
+two arguments: (1) The parent element; the browser object will be inserted into the DOM as a child of this element, and
+(2) A configuration object that defines the browser's initial state. `igv.createBrowser` returns a promise which 
+resolves to the browser object upon completion.  The browser object should be saved by the client program for future 
+calls to the API.
 
 The example below creates an igv browser initialized with the hg19 reference genome.  
 
@@ -28,7 +27,11 @@ The example below creates an igv browser initialized with the hg19 reference gen
 ```
 
 ## Browser configuration options ##
-The object that configures the browser's initial state includes details for the reference genome, track default settings, the initial set of loaded tracks, and the initial view locus. It also controls some aspects of the user interface.  All fields are optional except one of either **genome** or **reference**.
+
+
+The object that configures the browser's initial state includes details for the reference genome, track default settings, 
+the initial set of loaded tracks, and the initial view locus. It also controls some aspects of the user interface.  
+All fields are optional except one of either **genome** or **reference**.
 
 Option  | Description                                                                                                                                                                                                                                                                                                                                                        | Default
 ------ |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ------------
@@ -86,7 +89,7 @@ E.g. a search for TP53 against hg19 using the defaults should look like this:
 
 
 
-#### Browser removal
+## Browser removal
 
 To remove an igv browser instance call
 

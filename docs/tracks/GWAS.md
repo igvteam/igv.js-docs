@@ -5,7 +5,7 @@ The GWAS track (`type = 'gwas'`) is used for visualizing genome wide association
 
 ## File formats
 
-GWAS tracks can be loaded from either bed or [gwas](/fileformats/gwas) files.
+GWAS tracks can be loaded from either bed or  files.
 
 ### bed
 
@@ -16,10 +16,19 @@ UCSC "0-based" positions, so the first position in the chromosome has start=0, e
 
 This is a flexible tab-delimited format.  Any number of columns are supported but must include chromosome, 
 position (1- based), and value (p-value or probability).  A column header is required.  Position of the required 
-columns can be specified in the file column header, as described [here](../fileformats/gwas.md), 
+columns can be specified in the file column header, as described below, 
 or in the track configuration (see example).   Remaining columns are used for the popup text display.
 
-#### Options
+To specify column positions for the required fields include the following case-insensitive column headers in the header line.
+
+*   **CHR**: chromosome (aliases chr, chromosome)
+*   **BP**: nucleotide location (aliases bp, pos, position)
+*   **SNP**: SNP identifier (aliases snp, rs, rsid, rsnum, id, marker, markername)
+*   **P**: p-value for the association (aliases p, pval, p-value, pvalue, p.value)
+
+
+
+## Options
 
 | Property             | Description                                                                                                                                                     | Default                                                                      |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
