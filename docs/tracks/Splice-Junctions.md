@@ -25,7 +25,7 @@ chr15	92883778	92885514	motif=GT/AG;uniquely_mapped=95;multi_mapped=10;maximum_s
 Here the attributes are taken directly from the [STAR v2 aligner](https://github.com/alexdobin/STAR) *.SJ.out.tab file.
 
 
-## Options
+## Configuration Options
 
 [General options](Tracks.md#options-for-all-track-types)
 

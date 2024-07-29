@@ -1,11 +1,12 @@
 <p class="page-title">Genome</p>
 
 In igv.js a _genome_ refers to a reference sequence and, optionally, one or more associated tracks and metadata such
-as chromosome aliases and chromosome cytobands. The reference genome can be defined with either they _genome_ identifier or 
-a _reference_ object properties.   One of these options is required.   
+as chromosome aliases and chromosome cytobands. 
+
+The reference genome can be defined with either the __genome__ or __reference__  property.   One of these options is required.   
 
 
-### _genome_ property
+## _genome_ property
 
 The _genome_ property specifies a reference genome by  an identifier for either (1) an IGV hosted genome definition,
 or (2) a UCSC GenArk assembly.   
@@ -31,64 +32,62 @@ Example - UCSC GenArk assembly
 
 ```
 
-IGV hosts limited number of genome assemblies, which are listed in the table below.   The UCSC GenArk site hosts
+IGV hosts a limited number of genome assemblies, which are listed in the table below.   The UCSC GenArk site hosts
 an extensive list of assembly hubs, currenlty numbering 4,247.  The complete listing can be 
 found [here](https://hgdownload.soe.ucsc.edu/hubs/UCSC_GI.assemblyHubList.txt).
 
 
 **IGV Hosted Genomes**
 
-id | name
---- | ---
-hs1  |   Human (T2T CHM13-v2.0/hs1)
-chm13v1.1  |   Human (T2T CHM13-v1.1)
-hg38  |   Human (GRCh38/hg38)
-hg38_1kg  |   Human (hg38 1kg/GATK)
-hg19  |   Human (GRCh37/hg19)
-hg18  |   Human (hg18)
-mm39  |   Mouse (GRCm39/mm39)
-mm10  |   Mouse (GRCm38/mm10)
-mm9  |   Mouse (NCBI37/mm9)
-rn7  |   Rat (rn7)
-rn6  |   Rat (RGCS 6.0/rn6)
-gorGor6  |   Gorilla (Kamilah_GGO_v0/gorGor6)
-gorGor4  |   Gorilla (gorGor4.1/gorGor4)
-panTro6  |   Chimp (panTro6) (panTro6)
-panTro5  |   Chimp (panTro5) (panTro5)
-panTro4  |    Chimp (SAC 2.1.4/panTro4)
-macFas5  |   Macaca fascicularis (macFas5)
-GCA_011100615.1  |   Macaca fascicularis 6.0 (GCA_011100615.1)
-panPan2  |   Bonobo (MPI-EVA panpan1.1/panPan2)
-canFam3  |   Dog (Broad CanFam3.1/canFam3)
-canFam4  |   Dog (UU_Cfam_GSD_1.0/canFam4)
-canFam5  |   Dog (canFam5)
-bosTau9  |   Cow (ARS-UCD1.2/bosTau9)
-bosTau8  |   Cow (UMD_3.1.1/bosTau8)
-susScr11  |   Pig (SGSC Sscrofa11.1/susScr11)
-galGal6  |    Chicken (galGal6)
-GCF_016699485.2  |   Gallus gallus (GCF_016699485.2)
-danRer11  |   Zebrafish (GRCZ11/danRer11)
-danRer10  |   Zebrafish (GRCZ10/danRer10)
-ce11  |   C. elegans (ce11)
-dm6  |   D. melanogaster (dm6)
-dm3  |   D. melanogaster (dm3)
-dmel_r5.9  |   D. melanogaster (dmel_r5.9)
-sacCer3  |   S. cerevisiae (sacCer3)
-ASM294v2  |   S. pombe (ASM294v2)
-ASM985889v3  |   Sars-CoV-2 (ASM985889v3)
-tair10  |   A. thaliana (TAIR 10)
-GCA_003086295.2  |   Peanut (GCA_003086295.2)
-GCF_001433935.1  |   O. sativa IRGSP-1.0 (GCF_001433935.1)
-NC_016856.1  |   Salmonella enterica subsp. enterica serovar Typhimurium str. 14028S
-GCA_000182895.1  |   Coprinopsis cinerea okayama7#130 (GCA_000182895.1)
+| id              | name                                                                |
+|-----------------|---------------------------------------------------------------------|
+| hs1             | Human (T2T CHM13-v2.0/hs1)                                          |
+| chm13v1.1       | Human (T2T CHM13-v1.1)                                              |
+| hg38            | Human (GRCh38/hg38)                                                 |
+| hg38_1kg        | Human (hg38 1kg/GATK)                                               |
+| hg19            | Human (GRCh37/hg19)                                                 |
+| hg18            | Human (hg18)                                                        |
+| mm39            | Mouse (GRCm39/mm39)                                                 |
+| mm10            | Mouse (GRCm38/mm10)                                                 |
+| mm9             | Mouse (NCBI37/mm9)                                                  |
+| rn7             | Rat (rn7)                                                           |
+| rn6             | Rat (RGCS 6.0/rn6)                                                  |
+| gorGor6         | Gorilla (Kamilah_GGO_v0/gorGor6)                                    |
+| gorGor4         | Gorilla (gorGor4.1/gorGor4)                                         |
+| panTro6         | Chimp (panTro6) (panTro6)                                           |
+| panTro5         | Chimp (panTro5) (panTro5)                                           |
+| panTro4         | Chimp (SAC 2.1.4/panTro4)                                           |
+| macFas5         | Macaca fascicularis (macFas5)                                       |
+| GCA_011100615.1 | Macaca fascicularis 6.0 (GCA_011100615.1)                           |
+| panPan2         | Bonobo (MPI-EVA panpan1.1/panPan2)                                  |
+| canFam3         | Dog (Broad CanFam3.1/canFam3)                                       |
+| canFam4         | Dog (UU_Cfam_GSD_1.0/canFam4)                                       |
+| canFam5         | Dog (canFam5)                                                       |
+| bosTau9         | Cow (ARS-UCD1.2/bosTau9)                                            |
+| bosTau8         | Cow (UMD_3.1.1/bosTau8)                                             |
+| susScr11        | Pig (SGSC Sscrofa11.1/susScr11)                                     |
+| galGal6         | Chicken (galGal6)                                                   |
+| GCF_016699485.2 | Gallus gallus (GCF_016699485.2)                                     |
+| danRer11        | Zebrafish (GRCZ11/danRer11)                                         |
+| danRer10        | Zebrafish (GRCZ10/danRer10)                                         |
+| ce11            | C. elegans (ce11)                                                   |
+| dm6             | D. melanogaster (dm6)                                               |
+| dm3             | D. melanogaster (dm3)                                               |
+| dmel_r5.9       | D. melanogaster (dmel_r5.9)                                         |
+| sacCer3         | S. cerevisiae (sacCer3)                                             |
+| ASM294v2        | S. pombe (ASM294v2)                                                 |
+| ASM985889v3     | Sars-CoV-2 (ASM985889v3)                                            |
+| tair10          | A. thaliana (TAIR 10)                                               |
+| GCA_003086295.2 | Peanut (GCA_003086295.2)                                            |
+| GCF_001433935.1 | O. sativa IRGSP-1.0 (GCF_001433935.1)                               |
+| NC_016856.1     | Salmonella enterica subsp. enterica serovar Typhimurium str. 14028S |
+| GCA_000182895.1 | Coprinopsis cinerea okayama7#130 (GCA_000182895.1)                  |
 
-
-
-### _reference_ object 
+## _reference_ object 
 
 To define or customize a reference genome the reference property can be used.  
 
-#### example
+### example
 
 ```javascript
 
@@ -108,11 +107,10 @@ To define or customize a reference genome the reference property can be used.
       }
     ]
   }
-
 }
 ```
 
-#### details
+### details
 
 All properties except a reference sequence URL (fastaURL or twoBitURL) are optional.   An index is highly recommended 
 for fasta files if the sequence is > a few mb in size.   Loading a large fasta file without an index is likely to 
@@ -123,23 +121,22 @@ freeze the browser.  In total there are 4 options for defining the reference seq
 3. BGZIPPED compressed fasta file.  __fastaURL, indexURL, compressedIndexURL__
 4. UCSC two bit sequence file (see [twobit]). (https://genome.ucsc.edu/goldenPath/help/twoBit.html).  __twoBitURL__
 
-Option  | Description | Default
------- | ------- | ------------
-id | UCSC or other id string.  _Optional_ |
-name | A descriptive name.  _Optional_ |
-fastaURL | URL to a FASTA file. **Either fastaURL or twoBitURL is required**. |
-indexURL | URL to a FASTA index (.fai file).  An index file is optional, but if not supplied the entire fasta is read. |
-compressedIndexURL | URL to a BGZIPPED compressed fasta file (.gzi index).  Note this is in addition, not in place, of the .fai index.
-twoBitURL | URL to a UCSC two-bit sequence file (Version 3.0).  Required if fastaURL is not defined.  If both fastaURL and twoBitURL are defined twoBitURL will be used for igv.js version >= 3.0, fastaURL for earlier igv.js versions.
-cytobandURL | URL to a cytoband ideogram file in UCSC format.  _Optional_  |
-aliasURL | URL to a tab-delimited file defining aliases for chromosome names.  File should have 1 line per chromosome with all names for the chromosome, separated by tabs, in arbitrary order.  See the example below.   _Optional_ |
-chromSizesURL | URL to a UCSC .chrom.sizes file.   This can be used in combination with twoBitURL to support the whole genome view.  |
-indexed | Flag indicating if the FASTA is indexed.  Ignored if indexURL is supplied.  The primary purpose of this property is to indicate that the fasta is not indexed.  _**Deprecated as of Version 3.0**_ |
-tracks | A list of tracks to be loaded with the genome.  See the [tracks](tracks/Tracks.md) description for details.  _Optional_
-chromosomeOrder | **Release 2.2** An array of chromosome names defining the order in the whole genome view and chromosome pulldown selector, if used.   _Optional_
-headers | http headers to include with each request. For example {"authorization": "bearer: token"}.  _Optional_ |
-wholeGenomeView | Construct a "whole genome" view from the individual sequences.  This is useful for finished assemblies with a few (< 50) large chromosomes.  Its not useful for assemblies with a single or conversely thousands of sequences. _Optional_ |  true
-
+| Option             | Description                                                                                                                                                                                                                               | Default |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| id                 | UCSC or other id string.  _Optional_                                                                                                                                                                                                      |         |
+| name               | A descriptive name.  _Optional_                                                                                                                                                                                                           |         |
+| fastaURL           | URL to a FASTA file. **Either fastaURL or twoBitURL is required**.                                                                                                                                                                        |         |
+| indexURL           | URL to a FASTA index (.fai file).  An index file is optional, but if not supplied the entire fasta is read.                                                                                                                               |         |
+| compressedIndexURL | URL to a BGZIPPED compressed fasta file (.gzi index).  Note this is in addition, not in place, of the .fai index.                                                                                                                         |         |
+| twoBitURL          | URL to a UCSC two-bit sequence file (Version 3.0).  Required if fastaURL is not defined.  If both fastaURL and twoBitURL are defined twoBitURL will be used for igv.js version >= 3.0, fastaURL for earlier igv.js versions.              |         |
+| cytobandURL        | URL to a cytoband ideogram file in UCSC format.  _Optional_                                                                                                                                                                               |         |
+| aliasURL           | URL to a tab-delimited file defining aliases for chromosome names.  Theformat is tab delimited with  1 line per chromosome.  Each line begins with the canonical chromosome followed by aliases.  See the example below.   _Optional_     |         |
+| chromSizesURL      | URL to a UCSC .chrom.sizes file.   This can be used in combination with twoBitURL to support the whole genome view.                                                                                                                       |         |
+| indexed            | Flag indicating if the FASTA is indexed.  Ignored if indexURL is supplied.  The primary purpose of this property is to indicate that the fasta is not indexed.  _**Deprecated as of Version 3.0**_                                        |         |
+| tracks             | A list of tracks to be loaded with the genome.  See the [tracks](tracks/Tracks.md) description for details.  _Optional_                                                                                                                   |         |
+| chromosomeOrder    | An array of chromosome names defining the order in the whole genome view and chromosome pulldown selector, if used.   _Optional_                                                                                                          |         |
+| headers            | HTTP headers to include with each request. For example {"authorization": "bearer: token"}.  _Optional_                                                                                                                                    |         |
+| wholeGenomeView    | Construct a "whole genome" view from the individual sequences.  This is useful for finished assemblies with a few (< 50) large chromosomes.  Its not useful for assemblies with a single or conversely thousands of sequences. _Optional_ | true    |
 
 #### Chromosome alias example
 

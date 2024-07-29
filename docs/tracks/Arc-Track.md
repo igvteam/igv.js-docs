@@ -54,7 +54,25 @@ Additional examples can be found in the supplement of the following paper
 
 [Lu Z, Zhang QC, Lee B, Flynn RA, Smith MA, Robinson JT, Davidovich C, Gooding AR, Goodrich KJ, Mattick JS, Mesirov JP, Cech TR, Chang HY. RNA Duplex Map in Living Cells Reveals Higher-Order Transcriptome Structure. Cell. 2016 May 12](https://www.cell.com/cell/abstract/S0092-8674(16)30422-6).
 
-
-## Options
+## Configuration Options
 
 [General options](Tracks.md#options-for-all-track-types)
+
+
+| Property       | Description                                                                               | Default |
+|----------------|-------------------------------------------------------------------------------------------|---------|
+| arcOrientation | Orientation of arcs, one of "UP" for clockwise or "DOWN" for counter-clockwise direction. | "UP"    |
+
+
+## Example
+
+```json
+{
+  "type": "arc",
+  "format": "bp",
+  "name": "RNA Struct BP", 
+  "url": "example.bp"
+}
+```
+
+![](../img/Arc_track.png)

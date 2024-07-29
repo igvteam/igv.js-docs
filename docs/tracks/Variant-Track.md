@@ -6,7 +6,7 @@ The variant track (`type="variant"`) displays variant records from "VCF" files o
 
 * [vcf](https://samtools.github.io/hts-specs/VCFv4.2.pdf)
 
-## Options
+## Configuration Options
 
 [General options](Tracks.md#options-for-all-track-types)
 

@@ -1,8 +1,20 @@
 <p class="page-title">Merged Track</p>
 
-The merged track (`type = 'merged'`) is used to overlay multiple wig tracks.
+The merged track (`type = 'merged'`) is used to overlay multiple wig tracks. 
 
-#### Example
+
+
+## Configuration Options
+
+[General options](Tracks.md#options-for-all-track-types)
+
+| Property | Description                                                                     | Default |
+|----------|---------------------------------------------------------------------------------|---------|
+| alpha    | Alpha transparency to apply to individual track colors.  Number between 0 and 1 | 0.5     |
+
+
+
+## Example
 
 ```javascript
                 {
@@ -24,5 +36,4 @@ The merged track (`type = 'merged'`) is used to overlay multiple wig tracks.
                         }
                     ]
                 }
-
 ```

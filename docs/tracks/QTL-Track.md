@@ -33,6 +33,15 @@ CHR     SNP     BP      P       Phenotype
 ...
 ```
 
+## Configuration Options
+
+[General options](Tracks.md#options-for-all-track-types)
+
+| Property            | Description                                                                                                        | Default |
+|---------------------|--------------------------------------------------------------------------------------------------------------------|---------|
+| min                 | Minimum value of y-axis in -log10 units.                                                                           | 3.5     |
+| max                 | Maximum value of y-axis in -log10 units.  Optional, if not specified max is set as a percentile of values in view. |         |
+| autoscalePercentile | Upper percentile for setting max value when autoscaling.  Number between 0 and 100.                                | 98      |
 
 ## Example
 

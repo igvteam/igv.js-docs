@@ -21,19 +21,6 @@ IGV ignores all other columns.
 
 The segmented data file format is the output of the Circular Binary Segmentation algorithm (Olshen et al., 2004).
 
-
-## Options
-
-[General options](Tracks.md#options-for-all-track-types)
-
-| Property    | Type    | Description                                                                                                                                                                  | Default    |
-|-------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
-| isLog       | boolean | True if values are  2 * log2(copyNumber / 2).                                                                                                                                | _computed_ |
-| displayMode | string  | One of "EXPANDED", "SQUISHED", or "FILL".  The value affects the sample height (height of each row).  The "FILL" value will result in all samples visible in the track view. | "EXPANDED" |
-| sort        | object  | An object specifying initial sort order(options).  See example below.                                                                                                        |            |
-
-
-
 ## Example
 
 ```
@@ -53,3 +40,14 @@ The segmented data file format is the output of the Circular Binary Segmentation
 }
 
 ```
+
+## Configuration Options
+
+[General options](Tracks.md#options-for-all-track-types)
+
+| Property    | Type    | Description                                                                                                                                                                  | Default    |
+|-------------|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| isLog       | boolean | True if values are  2 * log2(copyNumber / 2).                                                                                                                                | _computed_ |
+| displayMode | string  | One of "EXPANDED", "SQUISHED", or "FILL".  The value affects the sample height (height of each row).  The "FILL" value will result in all samples visible in the track view. | "EXPANDED" |
+| sort        | object  | An object specifying initial sort order(options).  See example below.                                                                                                        |            |
+

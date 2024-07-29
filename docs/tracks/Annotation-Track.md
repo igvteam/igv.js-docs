@@ -33,13 +33,24 @@ altColor | If supplied, used for features on negative strand |
 colorBy | Used with GFF/GTF files.  Name of column 9 attribute to color features by. | |
 colorTable | Used in conjunction with colorBy property.  Maps attribute values to CSS colors.  See example below. |
 
-### Color options
 
+## Example
 
+```json
+{
+  "type": "annotation",
+  "format": "bed",
+  "name": "Gencode v18",
+  "url": "https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/gencode.v18.collapsed.bed.gz", 
+  "indexURL": "https://s3.amazonaws.com/igv.broadinstitute.org/annotations/hg19/genes/gencode.v18.collapsed.bed.gz.tbi"
+}
+```
 
 #### colorBy example
 
-The ```coloryBy``` property takes an object specifying the name of the field to color by, used in conjunction with the ```colorTable``` property.  Fields are defined in GFF column 9.
+For GFF and GTF files the ```coloryBy``` property can be used ot specify a column 9 property to color by.  To specify
+specific colors for property values use the ```colorTable``` property.  If no ```colorTable``` is specified colors
+are assigned randomly.
 
 ```
 {
@@ -65,9 +76,9 @@ The ```coloryBy``` property takes an object specifying the name of the field to 
 ```
 
 
-#### color function (igv.js version 2.10.1)
+#### color function
 
-Beginning with igv.js version 2.10.1 the color and altColor properties can be specified with a function that takes a feature object
+The color and altColor properties can be specified with a function that takes a feature object
 as an argument and returns a CSS color string (e.g. "blue", "rgb(0,150,150)",  "#d2691e").   
 
 Example
@@ -105,32 +116,29 @@ Example
 The feature object passed to the color function is described below
 
 
-```javascript
+```typescript
 
-{
-  chr: chr,
-  start: integer,   
-  end: integer,
-  name: string
-  score: float,
-  strand: string,
-  cdStart: integer,
-  cdEnd: integer,
-  color: string,
-  exons: array
-  getAttributeValue(attributeName): function -- returns value of a GFF/GTF column 9 attribute
+interface Feature {
+  chr: string;
+  start: integer;   
+  end: integer;
+  name: string;
+  score: float;
+  strand: string;
+  cdStart: integer;
+  cdEnd: integer;
+  color: string;
+  exons: Exon [];
+  getAttributeValue: (property: string) => value;
 }
 
-\\ Exon array
-[
-{
-  start: integer,
-  end: integer,
-  cdStart: integer,
-  cdEnd: integer,
-  utr: boolean
+interface Exon {
+  start: integer;
+  end: integer;
+  cdStart: integer;
+  cdEnd: integer;
+  utr: boolean;
 }
-]
 
 ```
 

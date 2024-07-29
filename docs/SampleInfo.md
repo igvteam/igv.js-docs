@@ -1,7 +1,7 @@
 <p class="page-title">Sample Information File</p>
 
 Sample information files are tab-delimited text files used to associate attributes with sample names.  The attributes
-are displayed in the "Sample Information" panel and can be used to sort, group, and filter tracks.
+are displayed in the "Sample Information" panel and can be used to sort, group, and filter samples.
 
 The file consists of up to three sections
 
@@ -30,7 +30,7 @@ TCGA-02-0002	Neural	-0.069669747	MALE	NA	NA	No	NA	DEAD	0		97.5	5
 The sample mapping section begins with the line `#sampleMapping`.  It is used to map sample names in the sample 
 information file to corresponding names in the data files.  If the names match this section can be omitted.  
 The format is two-column tab delimited. The first column is 
-the sample name in the data file; the second column is the sample identifier in the attributes information.
+the sample name in the data file; the second column is the sample identifier in the `#sampleTable` section.
 
 Example: 
 ```
@@ -48,10 +48,10 @@ monocolor or in two-color heatmap for specified ranges.
 The attribute colors file (or section in a combined file) begins with the line `#colors`. The file is tab delimited 
 with three or four columns:
 
-* 1: Attribute name. An asterisk `*` indicates the color specification applies to all attributes.
-* 2: Attribute value or range of two values separated by a colon `:`. An asterisk `*` indicates the color specification applies to all attribute values.
-* 3: Color in RGB format. If a color is also specified in column 4, this is the first color of a two color heatmap.
-* 4: (Optional) Second color (RGB format) of a two-color heatmap.
+1. Attribute name. An asterisk `*` indicates the color specification applies to all attributes.
+2. Attribute value or range of two values separated by a colon `:`. An asterisk `*` indicates the color specification applies to all attribute values.
+3. Color in RGB format. If a color is also specified in column 4, this is the first color of a two color heatmap.
+4. (Optional) Second color (RGB format) of a two-color heatmap.
 
 ```
 #colors 	

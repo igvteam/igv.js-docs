@@ -9,7 +9,7 @@ The wig track (`type = 'wig'`) displays quantititive data as either a bar chart,
 * [bigwig](https://genome.ucsc.edu/goldenPath/help/bigWig.html)
 
 
-## Options
+## Configuration Options
 
 [General options](Tracks.md#options-for-all-track-types)
 

@@ -37,16 +37,17 @@ Whole genome [VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file with c
 Loading the data may take time, as it reads the entire VCF file and calculates the signals.
 
 
-## Options
+
+## Configuration Options
 
 [General options](Tracks.md#options-for-all-track-types)
 
-Property  | Description | Default
------- | ------- | ------------
-signal_name | Available Signal names <ul><li>rd_snp : Read Depth and BAF Likelihood</li><li>rd : Read depth</li><li> snp : BAF likelihood</li></ul> | rd_snp
-cnv_caller | Name of CNV caller <br>Options<ul><li> ReadDepth: Uses Read depth information only</li><li>2D: Uses both Read depth and BAF information</li></ul>  Shows data based on available caller data.| 2D
-bin_size | Bin size <ul> <li>pytor file: Bin size should be avialable in the pytor file</li><li>vcf: Bin size should be multiple of 10,000</li></ul> | 100000
-colors | Color of the signals. Signal details are in file format section. | ['gray', 'black', 'green', 'blue']
+| Property    | Description                                                                                                                                                                                   | Default                            |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------|
+| signal_name | Available Signal names <ul><li>rd_snp : Read Depth and BAF Likelihood</li><li>rd : Read depth</li><li> snp : BAF likelihood</li></ul>                                                         | rd_snp                             |
+| cnv_caller  | Name of CNV caller <br>Options<ul><li> ReadDepth: Uses Read depth information only</li><li>2D: Uses both Read depth and BAF information</li></ul>  Shows data based on available caller data. | 2D                                 |
+| bin_size    | Bin size <ul> <li>pytor file: Bin size should be avialable in the pytor file</li><li>vcf: Bin size should be multiple of 10,000</li></ul>                                                     | 100000                             |
+| colors      | Color of the signals. Signal details are in file format section.                                                                                                                              | ['gray', 'black', 'green', 'blue'] |
 
 #### Examples
 

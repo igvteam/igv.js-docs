@@ -7,18 +7,6 @@ The mutation track(`type="mut"`) displays data from the National Cancer Institut
 * [mut](https://docs.gdc.cancer.gov/Encyclopedia/pages/Mutation_Annotation_Format_TCGAv2/)
 * [maf](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) 
 
-
-## Options
-
-[General options](Tracks.md#options-for-all-track-types)
-
-| Property    | Type   | Description                           | Default                      |
-|-------------|--------|---------------------------------------|------------------------------|
-| format      | string | Either ```mut``` or ```maf```         | Inferred from file extension |
-| displayMode | string | One of EXPANDED, SQUISHED, COLLAPSED. | EXPANDED                     |
-
-
-
 ## Example
 
 ```javascript
@@ -34,3 +22,16 @@ The mutation track(`type="mut"`) displays data from the National Cancer Institut
 
 
 ```
+
+
+## Configuration Options
+
+[General options](Tracks.md#options-for-all-track-types)
+
+| Property    | Type   | Description                           | Default                      |
+|-------------|--------|---------------------------------------|------------------------------|
+| format      | string | Either ```mut``` or ```maf```         | Inferred from file extension |
+| displayMode | string | One of EXPANDED, SQUISHED, COLLAPSED. | EXPANDED                     |
+
+
+
