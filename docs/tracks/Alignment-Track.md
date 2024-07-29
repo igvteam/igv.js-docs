@@ -38,9 +38,11 @@ The alignment track (`type = 'alignment'`) is used to display views of read alig
 | insertionTextColor | Color for insertion count text.                                                                                                                                                             | white                     |
 | showDeletionText   | Show number of bases deleted inline when zoomed in.                                                                                                                                         | false                     |
 | deletionTextColor  | Color for deletion count text.                                                                                                                                                              | black                     |
-| displayMode        | See below.                                                                                                                                                                                  | "EXPANDED" |
-| alignmentRowHeight | Height in pixels for each row of alignments in "EXPANDED" or "FULL" display mode.                                                                                                           | 14 |
-| squishedRowHeight  | Height in pxels for each row of alignments in "SQUISHED" display mode.                                                                                                                      | 3 |
+| displayMode        | See below.                                                                                                                                                                                  | "EXPANDED"                |
+| alignmentRowHeight | Height in pixels for each row of alignments in "EXPANDED" or "FULL" display mode.                                                                                                           | 14                        |
+| squishedRowHeight  | Height in pxels for each row of alignments in "SQUISHED" display mode.                                                                                                                      | 3                         |
+
+<br/>
 
 #### displayMode options
 
@@ -48,46 +50,53 @@ The alignment track (`type = 'alignment'`) is used to display views of read alig
 * SQUISHED - Pack alignments densely and draw at _squishedRowHeight_
 * FULL - Draw 1 alignment per row at _alignmentRowHeight_.  
 
+<br/>
+
 #### Paired-end and mate-pair coloring options.
 
-Property | Description | Default
--------- | ----------- | -------
-pairOrientation | Expected orientation of pairs, one of ff, fr, or rf.  | Computed
-minTLEN | Minimum expected absolute "TLEN" value.  Pairs below this value are colored blue if colorBy == "tlen" or "unexpectedPair" | 
-maxTLEN | Maximum expected absolute "TLEN" value.   Pairs above this value are colored red if colorBy == "tlen" or "unexpectedPair" | Computed
-minTLENPercentile | The percentile threshold for expected insert size.  If minTLEN is not specified this value is used to compute one. See notes below. | 0.1
-maxTLENPercentile | The percentile maximum for expected insert size.  If maxTLEN is not specified this value is used to compute one. See notes below.| 99.9
+| Property          | Description                                                                                                                         | Default  |
+|-------------------|-------------------------------------------------------------------------------------------------------------------------------------|----------|
+| pairOrientation   | Expected orientation of pairs, one of ff, fr, or rf.                                                                                | Computed |
+| minTLEN           | Minimum expected absolute "TLEN" value.  Pairs below this value are colored blue if colorBy == "tlen" or "unexpectedPair"           |          |
+| maxTLEN           | Maximum expected absolute "TLEN" value.   Pairs above this value are colored red if colorBy == "tlen" or "unexpectedPair"           | Computed |
+| minTLENPercentile | The percentile threshold for expected insert size.  If minTLEN is not specified this value is used to compute one. See notes below. | 0.1      |
+| maxTLENPercentile | The percentile maximum for expected insert size.  If maxTLEN is not specified this value is used to compute one. See notes below.   | 99.9     |
 
 **Note on TLEN:** This refers to column 9 of an alignment record from the SAM specification. It has variously been called "template length", "insert size", and "fragment length". There is no agreement on a precise definition, and aligner interpretations differ, but generally it can be thought of as the distance between start and end of an aligned pair.   Pairs with TLEN outside the expected range can be indicative of a deletion, or more rarely and insertion.
 
 **Note on TLEN computation:** if minTLEN or maxTLEN are not specified a value is computed from a sampling of the first data loaded for the track.  Specifically, the values are taken from a percentile of the sample data as specified by minPercentile and maxPercentile.  It is possible to specify an explicit value for one.
 
+<br/>
+
 #### Sort option
 
 The `sort` object defines initial sort order of packed alignment rows based on an alignment property at a specified position
 
-Property | Description | Default
--------- | ----------- | -------
-chr  | Sequence (chromosome) name  |
-position    | Genomic position (integer) |
-option   | Parameter to sort by.  One of 'BASE', 'STRAND', 'INSERT_SIZE', 'MATE_CHR', 'MQ', 'TAG' | 
-tag      | Tag name to sort by.  Include only if option = 'TAG |   
-direction | Sort directions.  ASC = ascending, DESC = descending | "ASC"
+| Property  | Description                                                                            | Default |
+|-----------|----------------------------------------------------------------------------------------|---------|
+| chr       | Sequence (chromosome) name                                                             |         |
+| position  | Genomic position (integer)                                                             |         |
+| option    | Parameter to sort by.  One of 'BASE', 'STRAND', 'INSERT_SIZE', 'MATE_CHR', 'MQ', 'TAG' |         |
+| tag       | Tag name to sort by.  Include only if option = 'TAG                                    |         |
+| direction | Sort directions.  ASC = ascending, DESC = descending                                   | "ASC"   |
+
+<br/>
 
 #### Filter options
 
 The `filter` object defines an alignment filter  based on sam flags.  If not supplied default filters are set 
 as indicated in the table below.
 
-Property | Description | Default
-------- | ------------ | --------
-vendorFailed | filter alignments marked as failing vendor quality checks (bit 0x200) |  true
-duplicates | filter alignments marked as a duplicate (bit 0x400) | true 
-secondary | filter alignments marked secondary (bit 0x100) | false
-supplementary | filter alignments marked as supplmentary (bit 0x800) | false
-mq | filter alignments with mapping quality < supplied value (a number) | 0
-readgroups | array of read group names ('RG' tag).  If present filter alignments not matching this set |
+| Property      | Description                                                                               | Default |
+|---------------|-------------------------------------------------------------------------------------------|---------|
+| vendorFailed  | filter alignments marked as failing vendor quality checks (bit 0x200)                     | true    |
+| duplicates    | filter alignments marked as a duplicate (bit 0x400)                                       | true    |
+| secondary     | filter alignments marked secondary (bit 0x100)                                            | false   |
+| supplementary | filter alignments marked as supplmentary (bit 0x800)                                      | false   |
+| mq            | filter alignments with mapping quality < supplied value (a number)                        | 0       |
+| readgroups    | array of read group names ('RG' tag).  If present filter alignments not matching this set |         |
 
+<br/>
 
 ## Functions
 
