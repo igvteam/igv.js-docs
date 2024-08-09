@@ -11,19 +11,19 @@ btac830, https://doi.org/10.1093/bioinformatics/btac830
 
 # Examples
 
-***[Alignments](https://igv.org/web/release/2.15.13/examples/cram-vcf.html)***
+***[Alignments](https://igv.org/web/release/3.0.1/examples/cram-vcf.html)***
 
-***[Interactions](https://igv.org/web/release/2.15.13/examples/interact.html)***
+***[Interactions](https://igv.org/web/release/3.0.1/examples/interact.html)***
 
-***[Copy number](https://igv.org/web/release/2.15.13/examples/copyNumber.html)***
+***[Copy number](https://igv.org/web/release/3.0.1/examples/copyNumber.html)***
 
-***[Multiple regions](https://igv.org/web/release/2.15.13/examples/multi-locus.html)***
+***[Multiple regions](https://igv.org/web/release/3.0.1/examples/multi-locus.html)***
 
-***[Mutation Annotation Format (MAF)](https://igv.org/web/release/2.15.13/examples/maf-tcga.html)***
+***[Mutation Annotation Format (MAF)](https://igv.org/web/release/3.0.1/examples/maf-tcga.html)***
 
-***[Variant color options](https://igv.org/web/release/2.15.13/examples/variant-colors.html)***
+***[Variant color options](https://igv.org/web/release/3.0.1/examples/variant-colors.html)***
 
-***[More](https://igv.org/web/release/2.15.13/examples/)***
+***[More](https://igv.org/web/release/3.0.1/examples/)***
 
 
 # Supported Browsers

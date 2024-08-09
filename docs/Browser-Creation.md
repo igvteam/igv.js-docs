@@ -12,7 +12,7 @@ The example below creates an igv browser initialized with the hg19 reference gen
 
 <script type="module">
 
-    import igv from "https://cdn.jsdelivr.net/npm/igv@2.15.13/dist/igv.esm.min.js"
+    import igv from "https://cdn.jsdelivr.net/npm/igv@3.0.0/dist/igv.esm.min.js"
 
     const div = document.getElementById("igv_div")
     

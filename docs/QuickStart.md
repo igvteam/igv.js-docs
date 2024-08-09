@@ -4,18 +4,18 @@
 igv.js consists of a single javascript file with no external dependencies.
 
 Pre-built files for script include, AMD, or CJS module systems (igv.min.js) and an ES6 module (igv.esm.min.js)
-can be downloaded from [https://cdn.jsdelivr.net/npm/igv@2.15.13/dist/](https://cdn.jsdelivr.net/npm/igv@2.15.13/dist/).
+can be downloaded from [https://cdn.jsdelivr.net/npm/igv@3.0.2/dist/](https://cdn.jsdelivr.net/npm/igv@3.0.2/dist/).
 
 To import igv as an ES6 module
 
 ```javascript
-import igv from "https://cdn.jsdelivr.net/npm/igv@2.15.13/dist/igv.esm.min.js"
+import igv from "https://cdn.jsdelivr.net/npm/igv@3.0.2/dist/igv.esm.min.js"
 ``` 
 
 Or as a script include (defines the "igv" global)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/igv@2.15.13/dist/igv.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/igv@3.0.2/dist/igv.min.js"></script>
 ```   
 
 Alternatively you can install with npm

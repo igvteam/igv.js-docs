@@ -158,13 +158,13 @@ browser.loadROI([
 {
     name: 'ROI set 1',
     url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_1.bed',
-    indexed: false,
+    format: bed,
     color: "rgba(68, 134, 247, 0.25)"
 },
 {
     name: 'ROI set 2',
     url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_2.bed',
-    indexed: false,
+    format: bed,
     color: "rgba(0, 150, 50, 0.25)"
 })
 ```
@@ -214,6 +214,10 @@ browser.search('chr10:1000-2000 EGFR')
 ```
 
 This function returns a promise which resolves to ```true``` if the symbol was found, ```false``` otherwise.
+
+## currentLoci
+
+Return the current genomic region as a locus string, or array of locus strings if in multi-locus view.
 
 ## zoomIn
 

@@ -14,7 +14,8 @@ To produce a data URI from a data file
 data:application/gzip;base64,<encoded string>
 ```
 
-See https://github.com/igvteam/igv.js-reports for a utility for producing a self-contained html file with data URIs.
+See [https://github.com/igvteam/igv.js-reports](https://github.com/igvteam/igv.js-reports]) for a utility to produce self-contained html files with an embedded
+igv.js viewer using data URIs.
 
 
 

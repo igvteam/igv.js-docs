@@ -16,6 +16,7 @@ The color specification lines are followed immediately by data lines specifying 
 region of arc beginning, start & end of genomic region of arc end, and an optional color index.  The color index 
 refers to the line number of a color specification, with 0 (zero) being the first line.  
 
+```text
 color:	255	218	125	Low-probability basepairs
 color:	51	114	38	High-probability basepairs
 chr1	76	76	82	82	0
@@ -30,6 +31,7 @@ chr1	25	28	35	38	1
 chr1	58	65	97	104	1
 chr1	67	69	92	94	1
 chr1	70	73	87	90	1
+```
 
 
 #### bed
