@@ -44,10 +44,10 @@ The alignment track (`type = 'alignment'`) is used to display views of read alig
 | squishedRowHeight   | Height in pixels for each row of alignments in "SQUISHED" display mode.                                                                                     | 3                         |
 | coverageColor       | Color of coverage track                                                                                                                                     | rgb(150, 150, 150)        |
 | coverageTrackHeight | Height in pixels of the coverage track.                                                                                                                     | 3                         |
-| autoscale           | Autoscale track to maximum value in view                                                                                                                    |                           |
-| autoscaleGroup      | Identifier for an autoscale group.  Tracks with the same identifier are autoscaled together.                                                                |                           |
-| min                 | Sets the minimum value for the data (y-axis) scale.  Usually zero.                                                                                          | 0                         |
-| max                 | Sets the  maximum value for the data (y-axis) scale. This value is ignored if autoscale = true                                                              | No default                |
+| autoscale           | Autoscale coverage track to maximum value in view                                                                                                           | true unless 'max' is set  |
+| autoscaleGroup      | Identifier for an autoscale group for the coverage track.  Tracks with the same identifier are autoscaled together.                                         |                           |
+| min                 | Sets the minimum value for the coverage track data scale (y-axis).  Usually zero.                                                                           | 0                         |
+| max                 | Sets the maximum value for the coverage track data scale (y-axis). This value is ignored if autoscale = true                                                | No default                |
 
 <br/>
 
