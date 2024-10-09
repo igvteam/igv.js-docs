@@ -22,7 +22,7 @@ The wig track (`type = 'wig'`) displays quantititive data as either a bar chart,
 | color          | Track color as as an "rgb(,,,)" string, a hex string, or css color name.  Alternatively a function can be supplied which takes value as a parameter and returns a color.                          | "rgb(150,150,150)" |
 | altColor       | If supplied, used for negative values.  See description of color field above.                                                                                                                     |                    |
 | guideLines     | Draws a horizontal line for each object in the given array: ```guideLines: [ {color: [color], y: [number], dotted: [bool]} ]```  Note: y value should be between min and max or it will not show. |                    |
-| graphType      | Type of graph, either "bar", "points"                                                                                                                                                             | bar                |
+| graphType      | Type of graph, either "bar", "points" or "line"                                                                                                                                                   | bar                |
 | flipAxis       | If true, track is drawn "upside down" with zero at top                                                                                                                                            | false              |
 | windowFunction | Applicable to tracks created from **bigwig** and **tdf** files.  Governs how data is summarized when zooming out.  Options include **`min`**, **`max`**, and **`mean`**.                          | mean               |
 
