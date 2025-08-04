@@ -93,6 +93,18 @@ The method takes an object with a single property, `url`, which can be a URL or 
 browser.loadSampleInfo({url})
 ```
 
+## discardSampleInfo
+
+__async__
+
+Discard all sample information data.
+
+The method takes no parameters.
+
+```js
+browser.discardSampleInfo()
+```
+
 
 ## findTracks
 
