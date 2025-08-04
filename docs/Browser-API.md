@@ -87,10 +87,16 @@ __async__
 
 Load a [sample information](SampleInfo.md) file.  
 
-The method takes an object with a single property, `url`, which can be a URL or a local File blob.
+The method can take any one of the following as a parameter:
+
+• URL
+
+• local File blob
+
+• JavaScript object
 
 ```js
-browser.loadSampleInfo({url})
+browser.loadSampleInfo({url}) or browser.loadSampleInfo(sampleInfoObject)
 ```
 
 ## discardSampleInfo
