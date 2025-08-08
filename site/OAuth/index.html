@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Oauth - igv.js</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Setting the token in the track configuration", url: "#_top", children: [
+          ]},
+          {title: "Setting the token globally", url: "#setting-the-token-globally", children: [
+          ]},
+          {title: "Setting a Google access token", url: "#setting-a-google-access-token", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>This section describes support for OAuth access tokens.  Special thanks to @vrockai for his 
+significant contributions here. </p>
+<p>Files provided behind an OAuth secured endpoint need a bearer access token to be accessed. The  access token can 
+be provided as a string, a function, a promise, or a function that returns a promise.</p>
+<h2 id="setting-the-token-in-the-track-configuration">Setting the token in the track configuration<a class="headerlink" href="#setting-the-token-in-the-track-configuration" title="Direct link to this section">#</a></h2>
+<ol>
+<li>As a function returning the token string itself or a promise:</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Phase 3 WGS variants&quot;,
+  &quot;format&quot;: &quot;vcf&quot;,
+  &quot;url&quot;: &quot;https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz&quot;,
+  &quot;indexURL&quot;:  &quot;https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz.tbi&quot;,
+  &quot;type&quot;: &quot;variant&quot;,
+  &quot;oauthToken&quot;: myOauthTokenFn
+}
+</code></pre>
+<ol start="2">
+<li>As a string:</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Phase 3 WGS variants&quot;,
+  &quot;format&quot;: &quot;vcf&quot;,
+  &quot;url&quot;: &quot;https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz&quot;,
+  &quot;indexURL&quot;:  &quot;https://s3.amazonaws.com/1000genomes/release/20130502/ALL.wgs.phase3_shapeit2_mvncall_integrated_v5b.20130502.sites.vcf.gz.tbi&quot;,
+  &quot;type&quot;: &quot;variant&quot;,
+  &quot;oauthToken&quot;: &quot;F0jh9korTyzd9kaZqZ0SzjKZuS3ut0i4P4234352m2JYHiLIcqzFAumpyxshU9mMQ13gJHtxD2fy&quot;
+}
+</code></pre>
+<p>The function approach (1.) is preferred because it's a safe way how to provide up-to-date token to the igv.js browser 
+all the time. The value approach (2.) will work only for a life of the token and the browser would need to be refreshed 
+after the token is expired. The function approach works out of the box with promises. The <code>myOauthTokenFn</code> could look 
+like this:</p>
+<pre><code class="language-js">function myOauthTokenFn() {
+  return $http.get(myOauthEndpointURL).then(parseAccessToken);      
+}
+</code></pre>
+<h2 id="setting-the-token-globally">Setting the token globally<a class="headerlink" href="#setting-the-token-globally" title="Direct link to this section">#</a></h2>
+<p>To set a token for all requests to a particular host or hosts</p>
+<pre><code class="language-javascript">
+igv.setOauthToken(accessToken, &quot;*foobar*&quot;);
+
+</code></pre>
+<p>The above example will include the supplied bearer access token with every request to hosts matching the 
+string "<em>foobar</em>",  for example  "foobar.data.org".</p>
+<p>As illustrated in the track configuration examples accessToken can be a string, function, or promise.</p>
+<h2 id="setting-a-google-access-token">Setting a Google access token<a class="headerlink" href="#setting-a-google-access-token" title="Direct link to this section">#</a></h2>
+<p>For Google resources  (Google Cloud Storage and  Google Drive) the oAuth access token can 
+alternatively be set globally as shown below.  The token will be added as an Authorization header to all requests to 
+google servers.  The test for google server is host name matches  <em>googleapis</em> or protocol is gs://.</p>
+<pre><code class="language-js">igv.setGoogleOauthToken(accessToken)
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/OAuth.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

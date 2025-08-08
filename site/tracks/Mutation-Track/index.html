@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Mutations - igv.js</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "File Formats", url: "#_top", children: [
+          ]},
+          {title: "Example", url: "#example", children: [
+          ]},
+          {title: "Configuration Options", url: "#configuration-options", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">Mutation Track</p>
+
+<p>The mutation track(<code>type="mut"</code>) displays data from the National Cancer Institute's "mut" and "maf" file formats.</p>
+<h2 id="file-formats">File Formats<a class="headerlink" href="#file-formats" title="Direct link to this section">#</a></h2>
+<ul>
+<li><a href="https://docs.gdc.cancer.gov/Encyclopedia/pages/Mutation_Annotation_Format_TCGAv2/">mut</a></li>
+<li><a href="https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/">maf</a> </li>
+</ul>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Direct link to this section">#</a></h2>
+<pre><code class="language-javascript">
+    {
+        type: 'mut',
+        format: 'maf',
+        url: 'https://s3.amazonaws.com/igv.org.demo/TCGA.BRCA.mutect.995c0111-d90b-4140-bee7-3845436c3b42.DR-10.0.somatic.maf.gz',
+        indexed: false,
+        height: 700,
+        displayMode: &quot;EXPANDED&quot;,
+    }
+
+
+</code></pre>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Direct link to this section">#</a></h2>
+<p><a href="../Tracks/#options-for-all-track-types">General options</a></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>format</td>
+<td>string</td>
+<td>Either <code>mut</code> or <code>maf</code></td>
+<td>Inferred from file extension</td>
+</tr>
+<tr>
+<td>displayMode</td>
+<td>string</td>
+<td>One of EXPANDED, SQUISHED, COLLAPSED.</td>
+<td>EXPANDED</td>
+</tr>
+</tbody>
+</table>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/tracks/Mutation-Track.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

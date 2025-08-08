@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Regions of Interest - igv.js</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Configuration Based ROIs", url: "#_top", children: [
+          ]},
+          {title: "Dynamically Loaded ROIs", url: "#dynamically-loaded-rois", children: [
+          ]},
+          {title: "User Defined ROIs", url: "#user-defined-rois", children: [
+              {title: "clearROIs()", url: "#clearrois" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">Regions of Interest</p>
+
+<p>A Region of Interest (ROI) is a specified genomic extent that can be configured to highlight a region displayed in the
+browser in one of two ways:</p>
+<ol>
+<li>A <strong>track</strong> is configured with one or more ROI sets to highlight regions in the track.</li>
+<li>The IGV <strong>browser</strong> is configured with one or more ROI sets to highlight regions across all tracks.</li>
+</ol>
+<p>An ROI appears visually as a translucent color overlay. It is configured using an <code>roi</code> property either (1) on
+the <code>track</code> property of the browser configuration, or (2) on the browser configuration. The <code>roi</code> property refers to an
+array of objects, each of which specifies a set of ROIs. Each object (set) is in a format identical to the annotation
+track configuration object format.</p>
+<h2 id="configuration-based-rois">Configuration Based ROIs<a class="headerlink" href="#configuration-based-rois" title="Direct link to this section">#</a></h2>
+<p>The following example defines both global and track-specific ROI sets. Full example is available
+here <a href="https://github.com/igvteam/igv.js/blob/master/examples/roi/roi.html">examples/roi/roi.html</a></p>
+<ul>
+<li>
+<p>An <code>roi</code> property on the configuration specifies an array of two global ROI sets. The first set derives its ROIs
+  from a URL, the send set from a feature list.</p>
+</li>
+<li>
+<p>An <code>roi</code> property on a track configuration specifies a track-specific ROI set.</p>
+</li>
+<li>
+<p>ROI sets can be defined from either</p>
+<ul>
+<li>features in an annotation file, such as a BED or GFF file, or</li>
+<li>features with properties <code>{chr, start, end}</code> specified explicitly in an array.</li>
+</ul>
+</li>
+</ul>
+<pre><code>    const config = {
+
+        genome: &quot;hg19&quot;,
+
+        // Global ROI sets
+        roi:
+            [
+                // 1. Global ROI set defined by features in a BED file
+                {
+                    name: 'ROI set 1',
+                    url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_1.bed',
+                    indexed: false,
+                    color: &quot;rgba(94,255,1,0.25)&quot;
+                },
+
+                // 2. Global ROI set defined by explicitly specifying features in an array
+                {
+                    name: &quot;ROI set 2&quot;,
+                    color: &quot;rgba(3,52,249,0.25)&quot;,
+                    features: [
+                        {
+                            chr: &quot;chr1&quot;,
+                            start: 67670000,
+                            end: 67671080
+                        },
+                        {
+                            chr: &quot;chr1&quot;,
+                            start: 67672095,
+                            end: 67673993
+                        }
+                    ]
+                }
+            ],
+
+        //  Track specific ROI set
+        tracks:
+            [
+                {
+                    name: 'Some features',
+                    url: 'https://s3.amazonaws.com/igv.org.test/data/roi/some_features.bed',
+                    indexed: false,
+                    roi:
+                        [
+                            {
+                                name: 'Track Based ROI Set',
+                                url: 'https://s3.amazonaws.com/igv.org.test/data/roi/roi_bed_2.bed',
+                                indexed: false,
+                                color: &quot;rgba(255,1,199,0.25)&quot;
+                            },
+                        ]
+                }
+            ]
+    }
+</code></pre>
+<h2 id="dynamically-loaded-rois">Dynamically Loaded ROIs<a class="headerlink" href="#dynamically-loaded-rois" title="Direct link to this section">#</a></h2>
+<p>A list of global ROI sets can be loaded dynamically at runtime with the browser function <code>`loadROI(config)</code>. As in
+the example above, the features can be specified as either a URL to an annotation file, or as an explicit array.</p>
+<pre><code>     const dynamic_roi_config =
+        [
+            {
+                color: &quot;rgba(237,72,155,0.72)&quot;,
+                features:
+                    [
+                        {
+                            chr: &quot;chr1&quot;,
+                            start: 67655415,
+                            end: 67655611
+                        },
+                        {
+                            chr: &quot;chr1&quot;,
+                            start: 67664225,
+                            end: 67666281
+                        }
+                    ]
+            }
+        ]    
+     browser.loadROI(dynamic_roi_config)
+</code></pre>
+<h2 id="user-defined-rois">User Defined ROIs<a class="headerlink" href="#user-defined-rois" title="Direct link to this section">#</a></h2>
+<p>As of igv.js version 2.13.0, users can interactively create global ROIs by sweeping out extents on the ruler
+area while holding down the Shift key. Interactively defined ROIs can be removed, or assigned an extension, through
+a popup menu accssed by clicking on the region header.</p>
+<p>The Browser API function <code>getUserDefinedROIs()</code> returns a promise to return user defined regions as an array of
+features.</p>
+<h3 id="clearrois">clearROIs()<a class="headerlink" href="#clearrois" title="Direct link to this section">#</a></h3>
+<p>All global ROIs can be removed by calling <code>browser.clearROIs()</code>. </p>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/Regions-of-Interest.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

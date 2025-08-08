@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Wig - igv.js</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "File formats", url: "#_top", children: [
+          ]},
+          {title: "Configuration Options", url: "#configuration-options", children: [
+              {title: "Color Scale Objects", url: "#color-scale-objects" },
+          ]},
+          {title: "Example", url: "#example", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">Wig Track</p>
+
+<p>The wig track (<code>type = 'wig'</code>) displays quantititive data as either a bar chart, line plot, or points.</p>
+<h2 id="file-formats">File formats<a class="headerlink" href="#file-formats" title="Direct link to this section">#</a></h2>
+<ul>
+<li><a href="https://genome.ucsc.edu/goldenPath/help/wiggle.html">wig</a></li>
+<li><a href="https://genome.ucsc.edu/goldenPath/help/bedgraph.html">bedGraph</a></li>
+<li><a href="https://genome.ucsc.edu/goldenPath/help/bigWig.html">bigwig</a></li>
+</ul>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Direct link to this section">#</a></h2>
+<p><a href="../Tracks/#options-for-all-track-types">General options</a></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoscale</td>
+<td>Autoscale track to maximum value in view</td>
+<td></td>
+</tr>
+<tr>
+<td>autoscaleGroup</td>
+<td>Identifier for an autoscale group.  Tracks with the same identifier are autoscaled together.</td>
+<td></td>
+</tr>
+<tr>
+<td>min</td>
+<td>Sets the minimum value for the data (y-axis) scale.  Usually zero.</td>
+<td>0</td>
+</tr>
+<tr>
+<td>max</td>
+<td>Sets the  maximum value for the data (y-axis) scale. This value is ignored if autoscale = true</td>
+<td></td>
+</tr>
+<tr>
+<td>color</td>
+<td>Track color as as an "rgb(,,,)" string, a hex string, or css color name.  Alternatively a function can be supplied which takes value as a parameter and returns a color.</td>
+<td>"rgb(150,150,150)"</td>
+</tr>
+<tr>
+<td>altColor</td>
+<td>If supplied, used for negative values.  See description of color field above.</td>
+<td></td>
+</tr>
+<tr>
+<td>colorScale</td>
+<td>Color scale for heatmap (graphType = "heatmap" ).  See description below</td>
+<td></td>
+</tr>
+<tr>
+<td>guideLines</td>
+<td>Draws a horizontal line for each object in the given array: <code>guideLines: [ {color: [color], y: [number], dotted: [bool]} ]</code>  Note: y value should be between min and max or it will not show.</td>
+<td></td>
+</tr>
+<tr>
+<td>graphType</td>
+<td>Type of graph: "bar", "points", "line", or "heatmap"</td>
+<td>bar</td>
+</tr>
+<tr>
+<td>flipAxis</td>
+<td>If true, track is drawn "upside down" with zero at top</td>
+<td>false</td>
+</tr>
+<tr>
+<td>windowFunction</td>
+<td>Applicable to tracks created from <strong>bigwig</strong> and <strong>tdf</strong> files.  Governs how data is summarized when zooming out.  Options correspond to data in the file but generally include <strong><code>min</code></strong>, <strong><code>max</code></strong>, and <strong><code>mean</code></strong>.</td>
+<td>mean</td>
+</tr>
+</tbody>
+</table>
+<h4 id="color-scale-objects">Color Scale Objects<a class="headerlink" href="#color-scale-objects" title="Direct link to this section">#</a></h4>
+<p>A colorScale is described with an object of the form</p>
+<pre><code class="language-js">
+{
+    &quot;type&quot;: string,
+    &quot;min&quot;: number,
+    &quot;mid&quot;: number,
+    &quot;max&quot;: number,
+    &quot;minColor&quot;: string,
+    &quot;midColor&quot;: string,
+    &quot;maxColor&quot;: string
+}
+
+</code></pre>
+<p>Two types of color scales are supported</p>
+<ol>
+<li>type = 'gradient' :  A gradient color scale that varies linearlly from minColor to maxColor between min and max values. The mid and midColor properties are ignored.</li>
+<li>type = 'diverging' : Consist of 2 gradient color scales covering the range min-&gt;mid and mid-&gt; max</li>
+</ol>
+<p>The color strings can be one of:</p>
+<ul>
+<li>Hex format: #rrggbb</li>
+<li>RGB format: rgb(red, green, blue)</li>
+<li>Name format: name</li>
+</ul>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Direct link to this section">#</a></h2>
+<pre><code class="language-javascript">{
+  type: &quot;wig&quot;,
+  name: &quot;CTCF&quot;,
+  url: &quot;https://www.encodeproject.org/files/ENCFF356YES/@@download/ENCFF356YES.bigWig&quot;,
+  min: &quot;0&quot;,
+  max: &quot;30&quot;,
+  color: &quot;rgb(0, 0, 150)&quot;,
+  guideLines: [
+    {color: 'green', dotted: true, y: 25}, 
+    {color: 'red', dotted: false, y: 5}
+  ]
+}
+
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/tracks/Wig-Track.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

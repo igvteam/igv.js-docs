@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Segmented Copy Number - igv.js</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "File Formats", url: "#_top", children: [
+              {title: "seg", url: "#seg" },
+          ]},
+          {title: "Example", url: "#example", children: [
+          ]},
+          {title: "Configuration Options", url: "#configuration-options", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">Segmented Copy Number Track</p>
+
+<p>The segmented copy number (<code>type="seg"</code>) track displays segmented copy number values as a heatmap, 
+red = amplifications, blue = deletions. There are 2 common conventions for values in segmented copy number
+files,  the copy number itself, and a log score computed from</p>
+<pre><code>score = 2 * log2( copyNumber / 2)
+</code></pre>
+<p>The value type is indicated by the isLog property.  If no value is set  for this property it is inferred by the values 
+in the file, all positive values =&gt; isLog = false.  The presence of any negative values =&gt; isLog = true.</p>
+<h2 id="file-formats">File Formats<a class="headerlink" href="#file-formats" title="Direct link to this section">#</a></h2>
+<h3 id="seg">seg<a class="headerlink" href="#seg" title="Direct link to this section">#</a></h3>
+<p>A seg file (file extension .seg) is a tab-delimited text file that lists loci and associated numeric values. 
+The first row contains column headings, and each subsequent row contains a locus and an associated numeric value. 
+IGV ignores the column headings. It reads the first four columns as track name, chromosome, start location, and end location. 
+It reads the last column as the numeric value for that locus (if the value is non-numeric, IGV ignores the row). 
+IGV ignores all other columns.</p>
+<p>The segmented data file format is the output of the Circular Binary Segmentation algorithm (Olshen et al., 2004).</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Direct link to this section">#</a></h2>
+<pre><code>{
+  type: &quot;seg&quot;,
+  format: &quot;seg&quot;,
+  url: &quot;https://s3.amazonaws.com/igv.org.demo/GBM-TP.seg.gz&quot;,
+  indexed: false,
+  isLog: true,
+  name: &quot;GBM Copy # (TCGA Broad GDAC)&quot;,
+  sort: {
+     direction: &quot;DESC&quot;,     // ASC | DESC
+     chr : &quot;chr7&quot;,
+     start: 55174641,
+     end: 55175252
+  }
+}
+
+</code></pre>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Direct link to this section">#</a></h2>
+<p><a href="../Tracks/#options-for-all-track-types">General options</a></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isLog</td>
+<td>boolean</td>
+<td>True if values are  2 * log2(copyNumber / 2).</td>
+<td><em>computed</em></td>
+</tr>
+<tr>
+<td>displayMode</td>
+<td>string</td>
+<td>One of "EXPANDED", "SQUISHED", or "FILL".  The value affects the sample height (height of each row).  The "FILL" value will result in all samples visible in the track view.</td>
+<td>"EXPANDED"</td>
+</tr>
+<tr>
+<td>sort</td>
+<td>object</td>
+<td>An object specifying initial sort order(options).  See example below.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/tracks/Seg-Track.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

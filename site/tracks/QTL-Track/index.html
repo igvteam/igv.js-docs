@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>QTL - igv.js</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "File Formats", url: "#_top", children: [
+              {title: "qtl", url: "#qtl" },
+          ]},
+          {title: "Configuration Options", url: "#configuration-options", children: [
+          ]},
+          {title: "Example", url: "#example", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">QTL Track</p>
+
+<p>The qtl track (<code>type="qtl"</code>) displays xQTL data.  </p>
+<h2 id="file-formats">File Formats<a class="headerlink" href="#file-formats" title="Direct link to this section">#</a></h2>
+<h3 id="qtl">qtl<a class="headerlink" href="#qtl" title="Direct link to this section">#</a></h3>
+<p>Suggested file extension: '.qtl' or '.qtl.tsv'</p>
+<p>This is a flexible tab-delimited format.  Any number of columns are supported but must include chromosome,
+position (1- based), and value (p-value or probability).  A column header is required.  Position of the required
+columns can be specified in the file column header, as described below,
+or in the track configuration (see example).   Remaining columns are used for the popup text display.</p>
+<p>To specify column positions for the required fields include the following case-insensitive column headers in the header line.</p>
+<ul>
+<li><strong>CHR</strong>: chromosome (aliases: chromosome, chrom, chr_id)</li>
+<li><strong>BP</strong>: nucleotide location (aliases: bp, pos, position, chr_pos, chromEnd)</li>
+<li><strong>SNP</strong>: SNP identifier (aliases: rsid, variant)</li>
+<li><strong>P</strong>: p-value for the association (aliases: p, pval, p-value, pvalue, p.value)</li>
+<li><strong>Phenotype</strong> feature name for the associated phenotype.  For example, a gene name for an eqtl.  (aliases: gene, gene_id, molecular_trait_id)</li>
+</ul>
+<pre><code class="language-text">CHR     SNP     BP      P       Phenotype
+1       rs61769351      758443  0.000426        TTLL10
+1       rs1323158546    791100  0.000419        TTLL10
+1       rs58276399      796338  0.000485        TTLL10
+...
+</code></pre>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Direct link to this section">#</a></h2>
+<p><a href="../Tracks/#options-for-all-track-types">General options</a></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>min</td>
+<td>Minimum value of y-axis in -log10 units.</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>max</td>
+<td>Maximum value of y-axis in -log10 units.  Optional, if not specified max is set as a percentile of values in view.</td>
+<td></td>
+</tr>
+<tr>
+<td>autoscalePercentile</td>
+<td>Upper percentile for setting max value when autoscaling.  Number between 0 and 100.</td>
+<td>98</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Direct link to this section">#</a></h2>
+<pre><code class="language-js">{
+    type: &quot;qtl&quot;, 
+    format: &quot;qtl&quot;, 
+    name: &quot;B cell eQTL&quot;,
+    url: &quot;https://igv-genepattern-org.s3.amazonaws.com/test/qtl/B.cell_eQTL.tsv.gz&quot;, 
+    indexURL: &quot;https://igv-genepattern-org.s3.amazonaws.com/test/qtl/B.cell_eQTL.tsv.gz.tbi&quot;, 
+    visibilityWindow: 4000000
+}
+
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/tracks/QTL-Track.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Events - igv.js</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Browser events", url: "#_top", children: [
+              {title: "ReferenceFrame", url: "#referenceframe" },
+              {title: "popupData", url: "#popupdata" },
+              {title: "Example", url: "#example" },
+          ]},
+          {title: "Track events", url: "#track-events", children: [
+              {title: "Experimental -- not released and subject to change or removal", url: "#experimental-not-released-and-subject-to-change-or-removal" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="browser-events">Browser events<a class="headerlink" href="#browser-events" title="Direct link to this section">#</a></h1>
+<p>IGV provides a simple event system to listen for user interactions.  Event handlers can be attached to the "Browser" object with the <code>on</code> function</p>
+<pre><code>browser.on(event, handler)
+browser.off(event)
+</code></pre>
+<ul>
+<li>event (String) - the event type, see below</li>
+<li>handler (function) - handler function for the event.  The function may be passed data as described below</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Event type</th>
+<th>Description</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trackremoved</td>
+<td>Called when one or more tracks are removed, either by the user or through the API.  See <a href="https://github.com/igvteam/igv.js/blob/master/examples/events/track-reorder.html">track-reorder.html</a>.</td>
+<td>Array of track objects removed</td>
+</tr>
+<tr>
+<td>trackdrag</td>
+<td>Called repeatedly while the user pans the genome view.  Warning this event can trigger many calls</td>
+<td></td>
+</tr>
+<tr>
+<td>trackdragend</td>
+<td>Called upon completion of of a drag (horizontal pan).</td>
+<td></td>
+</tr>
+<tr>
+<td>locuschange</td>
+<td>Called when the genome locus is changed.  Note, as with trackdrag this event can trigger many calls.  See <a href="https://github.com/igvteam/igv.js/blob/master/examples/events/locus-change.html">locus-change.html</a></td>
+<td>Array of ReferenceFrame objects, or for versions &lt; 2.10.0 a single ReferenceFrame (see below).  In multi-locus view the array contains a ReferenceFrame for each viewport.</td>
+</tr>
+<tr>
+<td>trackclick</td>
+<td>Called when the user clicks on a feature in a track.  This event can be used to customized the igv popover window that displays information about the feature, or to take some other custom action.  To customize the popover window the callback function should return a string of valid html to be displayed (see <a href="https://github.com/igvteam/igv.js/blob/master/examples/events/custom-track-popover.html">custom-track-popover.html</a>).  To prevent the igv popover window from displaying return <code>false</code> (see <a href="https://github.com/igvteam/igv.js/blob/master/examples/events/custom-track-click.html">custom-track-click.html</a>)</td>
+<td>popupData (see below)</td>
+</tr>
+<tr>
+<td>trackorderchanged</td>
+<td>Called when the track order changes</td>
+<td>ordered array of track names</td>
+</tr>
+</tbody>
+</table>
+<h3 id="referenceframe">ReferenceFrame<a class="headerlink" href="#referenceframe" title="Direct link to this section">#</a></h3>
+<p>Object specifying the genome range of the current view.</p>
+<pre><code>{
+   chr : string
+   start: number  (&quot;0&quot; based coordinates)
+   end: number
+   getLocusString():  function - return a representation of the form ```chr:start-end```,  where start is in &quot;1&quot; based coordinates
+}
+</code></pre>
+<h3 id="popupdata">popupData<a class="headerlink" href="#popupdata" title="Direct link to this section">#</a></h3>
+<p>Array of properties for feature clicked as name/value pairs <code>[{name, value}, {name, value}, ...]</code></p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Direct link to this section">#</a></h2>
+<pre><code>browser.on('locuschange', function (referenceFrame) {
+                        window.location.replace(HASH_PREFIX + referenceFrame.label);
+                    });
+</code></pre>
+<h1 id="track-events">Track events<a class="headerlink" href="#track-events" title="Direct link to this section">#</a></h1>
+<h2 id="experimental-not-released-and-subject-to-change-or-removal"><em>Experimental -- not released and subject to change or removal</em><a class="headerlink" href="#experimental-not-released-and-subject-to-change-or-removal" title="Direct link to this section">#</a></h2>
+<pre><code>track.on(event, handler)
+</code></pre>
+<ul>
+<li>event (String) - the event type, see below</li>
+<li>handler (function) - handler function for the event.  The function may be passed data as described below</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Event type</th>
+<th>Description</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>action</td>
+<td>Triggered on an explicit user action, usually from a menu.  Only a subset of actions are supported, see table below.</td>
+<td>See user action table below</td>
+</tr>
+</tbody>
+</table>
+<h4 id="user-actions">User actions<a class="headerlink" href="#user-actions" title="Direct link to this section">#</a></h4>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Description</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sort</td>
+<td>Sort track data.  Supported by <em>alignment</em> and <em>seg</em> tracks, no-op for other track types</td>
+<td>sortObject</td>
+</tr>
+<tr>
+<td>setcolor</td>
+<td>Set the track color</td>
+<td>color-string (e.g. <code>rgb(0,0,150)</code></td>
+</tr>
+<tr>
+<td>setAltColor</td>
+<td>Set the "alt" color.  Interpretation of alt color depends on the track type.</td>
+<td>color-string</td>
+</tr>
+</tbody>
+</table>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/Events.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

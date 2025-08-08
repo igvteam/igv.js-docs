@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Merged Wig - igv.js</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Configuration Options", url: "#_top", children: [
+          ]},
+          {title: "Example", url: "#example", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">Merged Track</p>
+
+<p>The merged track (<code>type = 'merged'</code>) is used to overlay multiple wig tracks. </p>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Direct link to this section">#</a></h2>
+<p><a href="../Tracks/#options-for-all-track-types">General options</a></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>alpha</td>
+<td>Alpha transparency to apply to individual track colors.  Number between 0 and 1</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Direct link to this section">#</a></h2>
+<pre><code class="language-javascript">                {
+                    name: &quot;Merged&quot;,
+                    height: 50,
+                    type: &quot;merged&quot;,
+                    tracks: [
+                        {
+                            &quot;type&quot;: &quot;wig&quot;,
+                            &quot;format&quot;: &quot;bigwig&quot;,
+                            &quot;url&quot;: &quot;https://www.encodeproject.org/files/ENCFF000ASJ/@@download/ENCFF000ASJ.bigWig&quot;,
+                            &quot;color&quot;: &quot;red&quot;
+                        },
+                        {
+                            &quot;type&quot;: &quot;wig&quot;,
+                            &quot;format&quot;: &quot;bigwig&quot;,
+                            &quot;url&quot;: &quot;https://www.encodeproject.org/files/ENCFF351WPV/@@download/ENCFF351WPV.bigWig&quot;,
+                            &quot;color&quot;: &quot;green&quot;
+                        }
+                    ]
+                }
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/tracks/Merged.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

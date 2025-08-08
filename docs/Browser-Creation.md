@@ -62,7 +62,28 @@ All fields are optional except one of either **genome** or **reference**.
 | loadDefaultGenomes       | Boolean indicating whether or not the igv.js default genome list should be loaded.   Currently this list is loaded from                                                                                                                                                                                                                                            | true    |
 | nucleotideColors         | Color table for nucleotides in sequence an bam tracks.  Object with keys "A", "C", "T", "G", and "N"                                                                                                                                                                                                                                                               |         |
 | showSampleNames          | Controls display of sample names for track types that support them (VCF with genotypes, SEG, and MUT)                                                                                                                                                                                                                                                              |         |
-| sampleinfo          | Sample information can be included in browser configuration as an array of sample info objects                                                                                                                                                                                                                                                              |         |
+| sampleinfo          | An array of sample info objects. Optional. See example below and [Sample Information](../SampleInfo/) for further details .                                                                                                                                                                                                                                                              |         |
+
+#### _sampleinfo_ object example
+
+A sample info object contains key-value pairs representing sample attributes. Here's an example:
+
+```json
+{
+    "Subtype": "Proneural",
+    "sil_width": 0.358227502,
+    "GENDER": "MALE",
+    "KarnScore": null,
+    "AgeAtFirstDiagnosis": 42.0,
+    "Secondary|or|Recurrent": "No",
+    "Survival|(days)": 322.0,
+    "VITALSTATUS": "DEAD",
+    "Censured": 0.0,
+    "MGMT_methylated": "-",
+    "%|Tumor|Nuclei": 100.0,
+    "%|Necrosis": 5.0
+}
+```
 
 #### _search_ object details
 

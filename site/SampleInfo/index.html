@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Sample information - igv.js</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Attributes", url: "#_top", children: [
+          ]},
+          {title: "Sample mapping", url: "#sample-mapping", children: [
+          ]},
+          {title: "Attribute colors", url: "#attribute-colors", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">Sample Information File</p>
+
+<p>Sample information files are tab-delimited text files used to associate attributes with sample names.  The attributes
+are displayed in the "Sample Information" panel and can be used to sort, group, and filter samples.</p>
+<p>The file consists of up to three sections</p>
+<ul>
+<li>A tab delimited table specifying <strong>attributes</strong> and their values for each sample - Required.</li>
+<li><strong>Sample mapping</strong> information - Optional, needed only if the sample names in the attribute information do not match the sample names in the data files.</li>
+<li><strong>Colors</strong> Optional, used to explicitly specify colors.</li>
+</ul>
+<h2 id="attributes">Attributes<a class="headerlink" href="#attributes" title="Direct link to this section">#</a></h2>
+<p>The attributes section is denoted by the line <code>#sampleTable</code>.  It consists of a tab delimited header row defining the 
+attribute names, followed by one row per sample containing attribute values.  The first column contains the sample names.<br />
+If the attribute section is the first or only section in the file the <code>#sampleTable</code> line can be omitted.</p>
+<p>An example attribute section for 2 samples follows.</p>
+<pre><code>#sampleTable
+ID  Subtype sil_width   GENDER  KarnScore   Censured    MGMT_methylated % Tumor Nuclei  % Necrosis
+TCGA-02-0001    Classical   -0.135526414    FEMALE  80  0       97.5    0
+TCGA-02-0002    Neural  -0.069669747    MALE    NA  NA  No  NA  DEAD    0       97.5    5
+</code></pre>
+<h2 id="sample-mapping">Sample mapping<a class="headerlink" href="#sample-mapping" title="Direct link to this section">#</a></h2>
+<p>The sample mapping section begins with the line <code>#sampleMapping</code>.  It is used to map sample names in the sample 
+information file to corresponding names in the data files.  If the names match this section can be omitted.<br />
+The format is two-column tab delimited. The first column is 
+the sample name in the data file; the second column is the sample identifier in the <code>#sampleTable</code> section.</p>
+<p>Example: </p>
+<pre><code>#sampleMapping
+TRIBE_p_TCGAaffx_B1_2_GBM_Nsp_GenomeWideSNP_6_A01_155716    TCGA-02-0001
+TRIBE_p_TCGAaffx_B1_2_GBM_Nsp_GenomeWideSNP_6_A03_155748    TCGA-02-0002
+</code></pre>
+<h2 id="attribute-colors">Attribute colors<a class="headerlink" href="#attribute-colors" title="Direct link to this section">#</a></h2>
+<p>By default, IGV randomly assigns colors to the attribute values. You can optionally specify the colors for attribute 
+values in RGB format for a specific attribute name, a specific value, or as a heatmap scale for numeric columns in 
+monocolor or in two-color heatmap for specified ranges. </p>
+<p>The attribute colors file (or section in a combined file) begins with the line <code>#colors</code>. The file is tab delimited 
+with three or four columns:</p>
+<ol>
+<li>Attribute name. An asterisk <code>*</code> indicates the color specification applies to all attributes.</li>
+<li>Attribute value or range of two values separated by a colon <code>:</code>. An asterisk <code>*</code> indicates the color specification applies to all attribute values.</li>
+<li>Color in RGB format. If a color is also specified in column 4, this is the first color of a two color heatmap.</li>
+<li>(Optional) Second color (RGB format) of a two-color heatmap.</li>
+</ol>
+<pre><code>#colors     
+
+# A value of  &quot;MALE&quot; for the &quot;GENDER&quot; column gets the color (0,0,155)
+GENDER  MALE    0,0,155 
+
+# A value of &quot;Classical&quot;  in any column gets the color  (80,180,80)
+*   Classical   80,180,80   
+
+# Numeric column example, monocolor heatmap
+KarnScore   *   0,0,255     
+
+# Another monocolor heatmap, this time with the range specified
+% Tumor Nuclei  90:100  0,0,255 
+
+# A two-color heatmap with the range specified
+sil_width   -0.1:0.5    0,0,255     255,0,0     
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/SampleInfo.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

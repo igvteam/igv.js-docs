@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="None">
+    
+    
+    <link rel="shortcut icon" href="./img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>igv.js</title>
+    <link href="./css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="./css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="./css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/bootstrap-3.3.7.min.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+    
+      <script src="./js/elasticlunr.min.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '.';
+      var is_top_frame = (window === window.parent);
+        
+        var pageToc = [
+          {title: "Citing igv.js", url: "#_top", children: [
+          ]},
+          {title: "Examples", url: "#examples", children: [
+          ]},
+          {title: "Supported Browsers", url: "#supported-browsers", children: [
+          ]},
+          {title: "License", url: "#license", children: [
+              {title: "Release Notes", url: "#release-notes" },
+          ]},
+        ];
+
+    </script>
+    <script src="./js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+<nav class="navbar wm-page-top-frame">
+  <div class="container-fluid wm-top-container">
+  
+    
+    <div>
+	<a href="https://github.com/igvteam/igv.js-docs/" target="_blank" class="wm-top-repo pull-right wm-vcenter"> 
+	<div> &nbsp; <i class="fa fa-github"></i>
+</a> </div>
+	</div>
+    
+    
+    <div class="wm-top-tool pull-right wm-vcenter">
+      <form class="dropdown wm-vcentered" id="wm-search-form" action="./search.html">
+        
+        <button id="wm-search-show" class="btn btn-sm btn-default" type="submit"
+          ><i class="fa fa-search" aria-hidden="true"></i></button>
+
+        <div class="input-group input-group-sm wm-top-search">
+          <input type="text" name="q" class="form-control" id="mkdocs-search-query" placeholder="Search" autocomplete="off">
+          <span class="input-group-btn" role="search">
+            
+            <button class="btn btn-default dropdown-toggle collapse" data-toggle="dropdown" type="button"><span class="caret"></span></button>
+            <ul id="mkdocs-search-results" class="dropdown-menu dropdown-menu-right"></ul>
+            <button id="wm-search-go" class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+
+    
+    <div class="wm-top-tool wm-vcenter pull-right wm-small-left">
+      <button id="wm-toc-button" type="button" class="btn btn-sm btn-default wm-vcentered"><i class="fa fa-th-list" aria-hidden="true"></i></button>
+    </div>
+
+    
+    
+
+    
+    <a href="" class="wm-top-brand wm-top-link wm-vcenter">
+      
+      <div class="wm-top-title">
+        igv.js<br>
+        
+      </div>
+    </a>
+    
+  </div>
+</nav>
+
+  <div id="main-content" class="wm-page-top-frame">
+    
+<nav class="wm-toc-pane">
+  <!--
+  
+    <ul class="wm-toctree wm-toc-repo">
+      <li class="wm-toc-li wm-toc-lev1">
+      <a class="wm-article-link wm-toc-text" href="https://github.com/igvteam/igv.js-docs/">
+        <i class="fa fa-github"></i>
+
+        GitHub
+      </a>
+      </li>
+    </ul>
+  -->
+  <ul class="wm-toctree">
+        <li class="wm-toc-li wm-toc-lev1 "><a href="QuickStart/" class="wm-article-link wm-toc-text">Quickstart</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Browser-Creation/" class="wm-article-link wm-toc-text">Browser creation</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Browser-API/" class="wm-article-link wm-toc-text">Browser API</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Reference-Genome/" class="wm-article-link wm-toc-text">Reference genome</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 wm-toc-opener"><span class="wm-toc-text">Tracks</span>
+</li>
+<li class="wm-toc-li-nested collapse">
+  <ul class="wm-toctree">
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Tracks/" class="wm-article-link wm-toc-text">General</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Annotation-Track/" class="wm-article-link wm-toc-text">Annotation</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Wig-Track/" class="wm-article-link wm-toc-text">Wig</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Alignment-Track/" class="wm-article-link wm-toc-text">Alignment</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Variant-Track/" class="wm-article-link wm-toc-text">Variant</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Mutation-Track/" class="wm-article-link wm-toc-text">Mutations</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Seg-Track/" class="wm-article-link wm-toc-text">Segmented Copy Number</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/GWAS/" class="wm-article-link wm-toc-text">GWAS</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Interact/" class="wm-article-link wm-toc-text">Interact</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/QTL-Track/" class="wm-article-link wm-toc-text">QTL</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Splice-Junctions/" class="wm-article-link wm-toc-text">Junctions</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/CNVPytor/" class="wm-article-link wm-toc-text">CNV Pytor</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Merged/" class="wm-article-link wm-toc-text">Merged Wig</a>
+</li>
+      <li class="wm-toc-li wm-toc-lev2 "><a href="tracks/Arc-Track/" class="wm-article-link wm-toc-text">RNA Structure</a>
+</li>
+  </ul>
+</li>
+
+        <li class="wm-toc-li wm-toc-lev1 "><a href="SampleInfo/" class="wm-article-link wm-toc-text">Sample information</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Regions-of-Interest/" class="wm-article-link wm-toc-text">Regions of Interest</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Events/" class="wm-article-link wm-toc-text">Events</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="OAuth/" class="wm-article-link wm-toc-text">Oauth</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Data-URIs/" class="wm-article-link wm-toc-text">Data URIs</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Query-Parameters/" class="wm-article-link wm-toc-text">Query parameters</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Data-Server-Requirements/" class="wm-article-link wm-toc-text">Data server requirements</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="Development/" class="wm-article-link wm-toc-text">Development</a>
+</li>
+  </ul>
+</nav>
+
+    <div class="wm-content-pane">
+      <iframe class="wm-article" name="article"></iframe>
+    </div>
+  </div>
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>igv.js is an embeddable interactive genome visualization component developed by the
+<a href="https://igv.org">Integrative Genomics Viewer (IGV)</a> team.</p>
+<h1 id="citing-igvjs">Citing igv.js<a class="headerlink" href="#citing-igvjs" title="Direct link to this section">#</a></h1>
+<p>James T Robinson, Helga Thorvaldsdottir, Douglass Turner, Jill P Mesirov, igv.js: an embeddable JavaScript
+implementation of the Integrative Genomics Viewer (IGV), Bioinformatics, Volume 39, Issue 1, January 2023,
+btac830, https://doi.org/10.1093/bioinformatics/btac830</p>
+<h1 id="examples">Examples<a class="headerlink" href="#examples" title="Direct link to this section">#</a></h1>
+<p><strong><em><a href="https://igv.org/web/release/3.1.0/examples/cram-vcf.html">Alignments</a></em></strong></p>
+<p><strong><em><a href="https://igv.org/web/release/3.1.0/examples/interact.html">Interactions</a></em></strong></p>
+<p><strong><em><a href="https://igv.org/web/release/3.1.0/examples/copyNumber.html">Copy number</a></em></strong></p>
+<p><strong><em><a href="https://igv.org/web/release/3.1.0/examples/multi-locus.html">Multiple regions</a></em></strong></p>
+<p><strong><em><a href="https://igv.org/web/release/3.1.0/examples/maf-tcga.html">Mutation Annotation Format (MAF)</a></em></strong></p>
+<p><strong><em><a href="https://igv.org/web/release/3.1.0/examples/variant-colors.html">Variant color options</a></em></strong></p>
+<p><strong><em><a href="https://igv.org/web/release/3.1.0/examples/">More</a></em></strong></p>
+<h1 id="supported-browsers">Supported Browsers<a class="headerlink" href="#supported-browsers" title="Direct link to this section">#</a></h1>
+<p>igv.js require a modern web browser with support for Javascript ECMAScript 2015 (ES6).</p>
+<h1 id="license">License<a class="headerlink" href="#license" title="Direct link to this section">#</a></h1>
+<p>igv.js is <a href="/LICENSE">MIT</a> licensed.</p>
+<h3 id="release-notes"><a href="https://github.com/igvteam/igv.js/releases">Release Notes</a><a class="headerlink" href="#release-notes" title="Direct link to this section">#</a></h3>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/index.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2025-08-06 13:03:56.780030+00:00
+-->

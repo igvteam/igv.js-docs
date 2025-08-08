@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Junctions - igv.js</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "File formats", url: "#_top", children: [
+              {title: "bed", url: "#bed" },
+          ]},
+          {title: "Configuration Options", url: "#configuration-options", children: [
+              {title: "Display Options", url: "#display-options" },
+              {title: "Filtering Options", url: "#filtering-options" },
+          ]},
+          {title: "Example", url: "#example", children: [
+              {title: "Sashimi track: combine 'spliceJunctions' track with 'wig' track", url: "#sashimi-track-combine-splicejunctions-track-with-wig-track" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p class="page-title">Splice Junction Track</p>
+
+<p>type = 'junction'</p>
+<h2 id="file-formats">File formats<a class="headerlink" href="#file-formats" title="Direct link to this section">#</a></h2>
+<h3 id="bed">bed<a class="headerlink" href="#bed" title="Direct link to this section">#</a></h3>
+<p>The source file for this track is a .bed file.
+Each row in the .bed file represents a single splice junction.  The name field (column #4) is used to encode the
+following attributes as semicolon separated key-value pairs (GFF3 column 9 format).</p>
+<p>Attributes:</p>
+<ul>
+<li>motif  - one of  'GT/AG', 'CT/AC', 'GC/AG', 'CT/GC', 'AT/AC', 'GT/AT', 'non-canonical' (from STAR v2.4)</li>
+<li>uniquely_mapped - number of uniquely mapped reads spanning this junction</li>
+<li>multi_mapped - number of non-uniquely mapped reads spanning this junction</li>
+<li>maximum_spliced_alignment_overhang - used as a filter if minSplicedAlignmentOverhang is defined in the track configuration</li>
+<li>annotationed_juncion</li>
+</ul>
+<p>This is an example .bed file row:</p>
+<pre><code>chr15   92883778    92885514    motif=GT/AG;uniquely_mapped=95;multi_mapped=10;maximum_spliced_alignment_overhang=38;annotated_junction=true    95  +
+</code></pre>
+<p>Here the attributes are taken directly from the <a href="https://github.com/alexdobin/STAR">STAR v2 aligner</a> *.SJ.out.tab file.</p>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Direct link to this section">#</a></h2>
+<p><a href="../Tracks/#options-for-all-track-types">General options</a></p>
+<p>config settings for this track fall into 2 categories: <strong>Filtering Options</strong> determine which splice junctions are shown, 
+while <strong>Display Options</strong> change how the splice junctions are displayed.</p>
+<h3 id="display-options">Display Options<a class="headerlink" href="#display-options" title="Direct link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>colorBy</td>
+<td>Splice junction color. Possible values: "numUniqueReads", "numReads", "isAnnotatedJunction", "strand", "motif"</td>
+<td>"numUniqueReads"</td>
+</tr>
+<tr>
+<td>colorByNumReadsThreshold</td>
+<td>If colorBy is set to "numUniqueReads" or "numReads", junction color will be darker when number of reads &gt; this threshold</td>
+<td>5</td>
+</tr>
+<tr>
+<td>thicknessBasedOn</td>
+<td>Splice junction line thickness. Possible values: "numUniqueReads", "numReads", "isAnnotatedJunction"</td>
+<td>"numUniqueReads"</td>
+</tr>
+<tr>
+<td>bounceHeightBasedOn</td>
+<td>Splice junction curve height. Possible values: "random", "distance", "thickness"</td>
+<td>"random"</td>
+</tr>
+<tr>
+<td>labelUniqueReadCount</td>
+<td>Add unique read counts to splice junction label</td>
+<td>true</td>
+</tr>
+<tr>
+<td>labelMultiMappedReadCount</td>
+<td>Add multi-mapped read counts to splice junction label</td>
+<td>true</td>
+</tr>
+<tr>
+<td>labelTotalReadCount</td>
+<td>Add total read counts to splice junction label</td>
+<td>false</td>
+</tr>
+<tr>
+<td>labelMotif</td>
+<td>Add splice junction motif to its label</td>
+<td>false</td>
+</tr>
+<tr>
+<td>labelAnnotatedJunction</td>
+<td>If defined, this string will be appended to the labels of splice junctions that exist in known gene models (eg. for which annotated_junction=true in the .bed file). Example value: " [A]"</td>
+<td>null</td>
+</tr>
+<tr>
+<td>minSplicedAlignmentOverhang</td>
+<td></td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h3 id="filtering-options">Filtering Options<a class="headerlink" href="#filtering-options" title="Direct link to this section">#</a></h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>minUniquelyMappedReads</td>
+<td>Junction must be supported by at least this many uniquely-mapped reads.</td>
+<td>0</td>
+</tr>
+<tr>
+<td>minTotalReads</td>
+<td>Junction must be supported by at least this many uniquely-mapped + multi-mapped reads.</td>
+<td>0</td>
+</tr>
+<tr>
+<td>maxFractionMultiMappedReads</td>
+<td>(uniquely-mapped reads)/(total reads) must be &lt;= this threshold</td>
+<td>1</td>
+</tr>
+<tr>
+<td>minSplicedAlignmentOverhang</td>
+<td>Mininum spliced alignment overhang in base pairs. See <a href="https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf">STAR aligner docs</a> for more details.</td>
+<td>0</td>
+</tr>
+<tr>
+<td>hideStrand</td>
+<td>Set to "+" or "-" to hide junctions on the plus or minus strand.</td>
+<td>null</td>
+</tr>
+<tr>
+<td>hideAnnotatedJunctions</td>
+<td>If true, only novel junctions will be shown (eg. those not found in gene models passed to the aligner)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>hideUnannotatedJunctions</td>
+<td>If true, only annotated junctions will be shown (eg. those found in gene models passed to the aligner)</td>
+<td>false</td>
+</tr>
+<tr>
+<td>hideMotifs</td>
+<td>A list of strings for motif values to hide. For example: ['GT/AT', 'non-canonical']</td>
+<td>[]</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Direct link to this section">#</a></h2>
+<pre><code class="language-javascript">{
+    type: 'spliceJunctions',
+    format: 'bed',
+    url: `${rootUrl}/${prefix}.SJ.out.bed.gz`,
+    indexURL: `${rootUrl}/${prefix}.SJ.out.bed.gz.tbi`,
+    minUniquelyMappedReads: 1,
+    minTotalReads: 1,
+    maxFractionMultiMappedReads: 1,
+    minSplicedAlignmentOverhang: 0,
+    thicknessBasedOn: 'numUniqueReads', //options: numUniqueReads (default), numReads, isAnnotatedJunction
+    bounceHeightBasedOn: 'random', //options: random (default), distance, thickness
+    colorBy: 'isAnnotatedJunction', //options: numUniqueReads (default), numReads, isAnnotatedJunction, strand, motif
+    labelUniqueReadCount: true,
+    labelMultiMappedReadCount: true,
+    labelTotalReadCount: false,
+    labelMotif: false,
+    labelAnnotatedJunction: &quot; [A]&quot;,
+    hideStrand: '-',
+    hideAnnotatedJunctions: false,
+    hideUnannotatedJunctions: false,
+    hideMotifs: ['GT/AT', 'non-canonical'], //options: 'GT/AG', 'CT/AC', 'GC/AG', 'CT/GC', 'AT/AC', 'GT/AT', 'non-canonical',
+},
+</code></pre>
+<h4 id="sashimi-track-combine-splicejunctions-track-with-wig-track">Sashimi track: combine 'spliceJunctions' track with 'wig' track<a class="headerlink" href="#sashimi-track-combine-splicejunctions-track-with-wig-track" title="Direct link to this section">#</a></h4>
+<p>The 'merged' track type allows a 'spliceJunctions' track to be rendered on top of a 'wig' track to create a full <a href="https://miso.readthedocs.io/en/fastmiso/sashimi.html">sashimi-like</a> track.</p>
+<p>Besides the .bed.gz file described above, this also requires a separate .bigWig file.</p>
+<pre><code>{
+        type: 'merged',
+        name: prefix,
+        height: 150,
+        tracks: [
+          {
+            type: 'wig',
+            format: &quot;bigwig&quot;,
+            url: `${rootUrl}/${prefix}.bigWig`,
+          },
+          {
+            type: 'spliceJunctions',
+            format: 'bed',
+            url: `${rootUrl}/${prefix}.SJ.out.bed.gz`,
+            indexURL: `${rootUrl}/${prefix}.SJ.out.bed.gz.tbi`,
+        minUniquelyMappedReads: 1,
+        ...
+          },
+        ],
+      }
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/tracks/Splice-Junctions.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>

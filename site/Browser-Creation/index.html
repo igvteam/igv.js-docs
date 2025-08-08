@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Browser creation - igv.js</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Browser configuration options", url: "#_top", children: [
+              {title: "search object details", url: "#search-object-details" },
+          ]},
+          {title: "Browser removal", url: "#browser-removal", children: [
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <p>The <code>igv.createBrowser</code> function is used to create an igv Browser object and insert it into your dom. The function takes 
+two arguments: (1) The parent element; the browser object will be inserted into the DOM as a child of this element, and
+(2) A configuration object that defines the browser's initial state. <code>igv.createBrowser</code> returns a promise which 
+resolves to the browser object upon completion.  The browser object should be saved by the client program for future 
+calls to the API.</p>
+<p>The example below creates an igv browser initialized with the hg19 reference genome.  </p>
+<pre><code class="language-html">
+&lt;div id=&quot;igv_div&quot;
+
+&lt;script type=&quot;module&quot;&gt;
+
+    import igv from &quot;https://cdn.jsdelivr.net/npm/igv@3.0.0/dist/igv.esm.min.js&quot;
+
+    const div = document.getElementById(&quot;igv_div&quot;)
+
+    const config = {
+            genome: &quot;hg19&quot;
+    }
+
+    const browser = await igv.createBrowser(div, config) 
+
+&lt;/script&gt;    
+
+</code></pre>
+<h2 id="browser-configuration-options">Browser configuration options<a class="headerlink" href="#browser-configuration-options" title="Direct link to this section">#</a></h2>
+<p>The object that configures the browser's initial state includes details for the reference genome, track default settings, 
+the initial set of loaded tracks, and the initial view locus. It also controls some aspects of the user interface.<br />
+All fields are optional except one of either <strong>genome</strong> or <strong>reference</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>genome</td>
+<td>String identifier defining genome (e.g. "hg19").  See <a href="../Reference-Genome/">Reference Genome</a> for details and list of supported identifiers. <strong>Note: One (but only one) of either <em>genome</em> or <em>reference</em> properties must be set.</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>reference</td>
+<td>Object defining reference genome.  See <a href="../Reference-Genome/">Reference Genome</a> for details. <strong>Note: One (but only one) of either <em>genome</em> or <em>reference</em> properties must be set.</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>flanking</td>
+<td>Distance (in bp) to pad sides of feature  on successful search for gene or other annotation.</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>genomeList</td>
+<td>URL to a json file containing an array of genome reference definitions, <em>or</em> an inline json array.  These genome definitions are appended to the default list unless <code>loadDefaultGenomes</code> is false.  Genomes can be specified from the list by ID with the "genome" property.  <strong>NOTE: the genomeList is globally shared by all igv browser instances on a page.</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>loadDefaultGenomes</td>
+<td>Load the default genome list on startup from <a href="https://igv.org/genomes/genomes.json">https://igv.org/genomes/genomes.json</a></td>
+<td>true</td>
+</tr>
+<tr>
+<td>locus</td>
+<td>Initial genomic location(s).  Either a string or an array of strings.  If an array a viewport is created for each location.</td>
+<td></td>
+</tr>
+<tr>
+<td>minimumBases</td>
+<td>Minimum window size in base pairs when zooming in</td>
+<td>40</td>
+</tr>
+<tr>
+<td>queryParametersSupported</td>
+<td>If true support initialization by query parameters.</td>
+<td>false</td>
+</tr>
+<tr>
+<td>search</td>
+<td>Object defining a web service for supporting search by gene or other annotation.  See object details below.  Optional.   Current a default service is provided for human (hg19, hg38) and mouse (mm10) assemblies.</td>
+<td></td>
+</tr>
+<tr>
+<td>showAllChromosomes</td>
+<td>Show all chromosome (sequences) in the pulldown control irrespective of size.  Set to false to filter sequences &lt; 1/50 the mean length.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showChromosomeWidget</td>
+<td>Show a chromosome (sequence) pulldown control.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showNavigation</td>
+<td>Show basic navigation controls (search, zoom in, zoom out).</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showIdeogram</td>
+<td>Show an ideogram of the chromosome in the header of the browser viewport.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showSVGButton</td>
+<td>Show button that saves browser as SVG file.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showRuler</td>
+<td>Show a genomic ruler track.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>showCenterGuide</td>
+<td>Show a pair of vertical lines, or single line when zoomed out, framing the base position at the center of view</td>
+<td>false</td>
+</tr>
+<tr>
+<td>showCursorTrackGuide</td>
+<td>Show a vertical line that follows the cursor</td>
+<td>false</td>
+</tr>
+<tr>
+<td>trackDefaults</td>
+<td>Embedded object defining default settings for specific track types (see table below).</td>
+<td></td>
+</tr>
+<tr>
+<td>tracks</td>
+<td>Array of configuration objects defining tracks initially displayed when app launches.</td>
+<td></td>
+</tr>
+<tr>
+<td>roi</td>
+<td>Array of track-like configuration objects defining regions of interest.  These regions will be overlaid on all tracks.</td>
+<td></td>
+</tr>
+<tr>
+<td>oauthToken</td>
+<td>oauth access token</td>
+<td></td>
+</tr>
+<tr>
+<td>apiKey</td>
+<td>Google API key.  Optional</td>
+<td></td>
+</tr>
+<tr>
+<td>clientId</td>
+<td>Google client ID.  Optional.</td>
+<td></td>
+</tr>
+<tr>
+<td>genomeList</td>
+<td>An array of genome json objects, or url to an array of genome json objects.  If present genomes can be specified by id with the <code>genome</code> field above.  This list is added to the igv.js default list unless <code>loadDefaultGenomes: false</code></td>
+<td></td>
+</tr>
+<tr>
+<td>loadDefaultGenomes</td>
+<td>Boolean indicating whether or not the igv.js default genome list should be loaded.   Currently this list is loaded from</td>
+<td>true</td>
+</tr>
+<tr>
+<td>nucleotideColors</td>
+<td>Color table for nucleotides in sequence an bam tracks.  Object with keys "A", "C", "T", "G", and "N"</td>
+<td></td>
+</tr>
+<tr>
+<td>showSampleNames</td>
+<td>Controls display of sample names for track types that support them (VCF with genotypes, SEG, and MUT)</td>
+<td></td>
+</tr>
+<tr>
+<td>sampleinfo</td>
+<td>Sample information can be included in browser configuration as an array of sample info objects</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="search-object-details"><em>search</em> object details<a class="headerlink" href="#search-object-details" title="Direct link to this section">#</a></h4>
+<p>The search object defines a webservice for fetching genomic location given a gene name or other symbol.  The service should return a JSON object with the following structure.  The results array is an array of objects with a chromosome, start, and end field.  The names of these fields are specified in the configuration object.   The end field is optional, if not included end = start + 1.</p>
+<pre><code>{
+  &lt;resultsField&gt; : &lt;array of results&gt;
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>url</td>
+<td>URL to search service.  The URL must include the string <code>$FEATURE$</code>.  This string will be replaced by the symbol being queried.  if the URL contains the string <code>$GENOME$</code> is will be replaced by the current genome ID.</td>
+<td></td>
+</tr>
+<tr>
+<td>resultsField</td>
+<td>JSON field name for property containing the array of results.</td>
+<td>Treats the response as an array of results.</td>
+</tr>
+<tr>
+<td>coords</td>
+<td>Indicates genomic coordinate convention used. Possible values are 0 and 1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>chromosomeField</td>
+<td>JSON field name for the chromosome property</td>
+<td>chromosome</td>
+</tr>
+<tr>
+<td>startField</td>
+<td>JSON field name for the start position property</td>
+<td>start</td>
+</tr>
+<tr>
+<td>endField</td>
+<td>JSON field name for the end position property</td>
+<td>end</td>
+</tr>
+</tbody>
+</table>
+<p>The results array contain objects with chromosome, start, and end fields named as specified above.  The type of the chromosome field is string, the type of start and end fields is integer.</p>
+<p>E.g. a search for TP53 against hg19 using the defaults should look like this:</p>
+<pre><code>[{"chromosome":"chr17","start":7572927,"end":7579912}]
+</code></pre>
+<h2 id="browser-removal">Browser removal<a class="headerlink" href="#browser-removal" title="Direct link to this section">#</a></h2>
+<p>To remove an igv browser instance call</p>
+<pre><code>igv.removeBrowser(browser)
+</code></pre>
+<p>To remove all igv browsers</p>
+<pre><code>igv.removeAllBrowsers()
+</code></pre>
+
+  <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <!--
+     <p>
+       <a href="https://github.com/igvteam/igv.js-docs/edit/master/docs/Browser-Creation.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  -->
+  <!-- <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p> -->
+</footer>
+
+</body>
+</html>
