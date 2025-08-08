@@ -5,7 +5,6 @@ The documentation is Markdown based and the website is generated using the [MkDo
 To get started, pull this repo and then:
 - `conda env create -f igv.js-docs.yml` to install the Conda environment with necessary dependencies.
 - `conda activate igv.js-docs` to activate the environment (the exact command might differ for Anaconda).
-- cd docs
 - `mkdocs serve` to start the MkDocs live-preview web server.
     -  Note: if you get an error concerning ```jinja2``` try the following `pip install jinja2==3.0.0`
     
