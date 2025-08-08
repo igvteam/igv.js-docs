@@ -80,60 +80,6 @@ browser.loadTrack({
 })
 ```
 
-## loadSampleInfo
-
-__async__
-
-Load sample information.  
-
-```js
-browser.loadSampleInfo(sampleinfoObject)
-```
-
-The sampleinfo object can contain a single property, *url*, which can be a URL or a local File blob. For example
-
-```js
-browser.loadSampleInfo({"url": "https://mydata.com/test/vcf/sampleinfo/integrated_call_samples.panel"})
-```
-
-Or the object can contain key value pairs for the sample names and their attributes. For example:
-
-```js
-browser.loadSampleInfo(
-{
-    "BRISK_p_STY37_Mapping250K_Sty_A09_147618": {
-            "Subtype": "Neural",
-            "sil_width": -0.069669747,
-            "GENDER": "MALE",
-            "KarnScore": null,
-            "AgeAtFirstDiagnosis": null,
-            "Secondary|or|Recurrent": "No"
-    },
-    "BRISK_p_STY37_Mapping250K_Sty_B12_147668": {
-            "Subtype": "Proneural",
-            "sil_width": 0.01155373,
-            "GENDER": "FEMALE",
-            "KarnScore": 90.0,
-            "AgeAtFirstDiagnosis": 42.0,
-            "Secondary|or|Recurrent": "Rec"
-     }
-}
-)
-``` 
-
-
-## discardSampleInfo
-
-__async__
-
-Discard all sample information data.
-
-The method takes no parameters.
-
-```js
-browser.discardSampleInfo()
-```
-
 ## findTracks
 
 Returns an array of tracks matching input critera.  Criteria can be specified as either
@@ -181,6 +127,59 @@ Remove track(s) whose "name" property matches the given name.
 ```js
 browser.removeTrackByName(name)
 ```
+## loadSampleInfo
+
+__async__
+
+Load sample information.  
+
+```js
+browser.loadSampleInfo(sampleinfoObject)
+```
+
+The sampleinfo object can contain a single property, *url*, which can be a URL or a local File blob. For example
+
+```js
+browser.loadSampleInfo({"url": "https://mydata.com/test/vcf/sampleinfo/integrated_call_samples.panel"})
+```
+
+Or the object can contain key value pairs for the sample names and their attributes. For example:
+
+```js
+browser.loadSampleInfo(
+{
+    "BRISK_p_STY37_Mapping250K_Sty_A09_147618": {
+            "Subtype": "Neural",
+            "sil_width": -0.069669747,
+            "GENDER": "MALE",
+            "KarnScore": null,
+            "AgeAtFirstDiagnosis": null,
+            "Secondary|or|Recurrent": "No"
+    },
+    "BRISK_p_STY37_Mapping250K_Sty_B12_147668": {
+            "Subtype": "Proneural",
+            "sil_width": 0.01155373,
+            "GENDER": "FEMALE",
+            "KarnScore": 90.0,
+            "AgeAtFirstDiagnosis": 42.0,
+            "Secondary|or|Recurrent": "Rec"
+     }
+}
+)
+``` 
+
+## discardSampleInfo
+
+__async__
+
+Discard all sample information data.
+
+The method takes no parameters.
+
+```js
+browser.discardSampleInfo()
+```
+
 
 ## loadROI
 
