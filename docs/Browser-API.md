@@ -33,7 +33,7 @@ browser.loadGenome(
       }
     ]
   }
-}
+)
 ```
 
 ## loadSessionObject
@@ -77,27 +77,50 @@ const track = await browser.loadTrack(config)
 browser.loadTrack({
   url: 'http://data.broadinstitute.org/igvdata/1KG/b37/data/HG02450/alignment/HG02450.mapped.ILLUMINA.bwa.ACB.low_coverage.20120522.bam',
   label: 'HG02450'
-    })
-
+})
 ```
 
 ## loadSampleInfo
 
 __async__
 
-Load a [sample information](SampleInfo.md) file.  
-
-The method can take any one of the following as a parameter:
-
-• URL
-
-• local File blob
-
-• JavaScript object
+Load sample information.  
 
 ```js
-browser.loadSampleInfo({url}) or browser.loadSampleInfo(sampleInfoObject)
+browser.loadSampleInfo(sampleinfoObject)
 ```
+
+The sampleinfo object can contain a single property, *url*, which can be a URL or a local File blob. For example
+
+```js
+browser.loadSampleInfo({"url": "https://mydata.com/test/vcf/sampleinfo/integrated_call_samples.panel"})
+```
+
+Or the object can contain key value pairs for the sample names and their attributes. For example:
+
+```js
+browser.loadSampleInfo(
+{
+    "BRISK_p_STY37_Mapping250K_Sty_A09_147618": {
+            "Subtype": "Neural",
+            "sil_width": -0.069669747,
+            "GENDER": "MALE",
+            "KarnScore": null,
+            "AgeAtFirstDiagnosis": null,
+            "Secondary|or|Recurrent": "No"
+    },
+    "BRISK_p_STY37_Mapping250K_Sty_B12_147668": {
+            "Subtype": "Proneural",
+            "sil_width": 0.01155373,
+            "GENDER": "FEMALE",
+            "KarnScore": 90.0,
+            "AgeAtFirstDiagnosis": 42.0,
+            "Secondary|or|Recurrent": "Rec"
+     }
+}
+)
+``` 
+
 
 ## discardSampleInfo
 
@@ -111,7 +134,6 @@ The method takes no parameters.
 browser.discardSampleInfo()
 ```
 
-
 ## findTracks
 
 Returns an array of tracks matching input critera.  Criteria can be specified as either
@@ -124,23 +146,24 @@ const tracks = browser.findTracks(propertyOrFunction, value)
 ```
 
 **Examples**
+
 ```js
-            console.log("Find tracks by property 'id' with value 'T2':");
-            const tracksById = browser.findTracks("id", "T2");
-            for(let t of tracksById) {
-                console.log(`  id=${t.id}   name=${t.name}`);
-            }
+console.log("Find tracks by property 'id' with value 'T2':");
+const tracksById = browser.findTracks("id", "T2");
+for(let t of tracksById) {
+    console.log(`  id=${t.id}   name=${t.name}`);
+}
 
-            console.log("Find tracks by type 'wig'");
-            const tracksByType = browser.findTracks("type", "wig");
-            for(let t of tracksByType) {
-                console.log(`  id=${t.id}   name=${t.name}`);
-            }
+console.log("Find tracks by type 'wig'");
+const tracksByType = browser.findTracks("type", "wig");
+for(let t of tracksByType) {
+     console.log(`  id=${t.id}   name=${t.name}`);
+}
 
-            console.log("Find tracks by function function(track) {return track.name && track.name.startsWith('GM128')}");
-            const tracksByFunction = browser.findTracks(function(track) {
-                return track.name && track.name.startsWith('GM128');
-            });
+console.log("Find tracks by function function(track) {return track.name && track.name.startsWith('GM128')}");
+const tracksByFunction = browser.findTracks(function(track) {
+     return track.name && track.name.startsWith('GM128');
+});
 ```
 
 ## removeTrack
@@ -220,6 +243,7 @@ browser.search(locus)
 ```
 
 **Examples**
+
 ```js
 browser.search('EGFR')
 browser.search('chr10:1000-2000')
@@ -273,7 +297,7 @@ browser.visibilityChange()
 If multiple igv browsers are on a page, the function ```igv.visibilityChange``` can be used to signal all.
 
 ```js
-    igv.visibilityChange();
+igv.visibilityChange();
 ```
 
 
@@ -283,7 +307,7 @@ Return the current state of the browser as a JSON style object.  This object can
 Note the returned value is a jsonifiable object, not a json string.
 
 ```js
-   const json = browser.toJSON();
+const json = browser.toJSON();
 ```
 
 ## compressedSession
