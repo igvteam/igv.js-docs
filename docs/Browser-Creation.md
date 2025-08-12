@@ -62,11 +62,11 @@ All fields are optional except one of either **genome** or **reference**.
 | loadDefaultGenomes       | Boolean indicating whether or not the igv.js default genome list should be loaded.   Currently this list is loaded from                                                                                                                                                                                                                                            | true    |
 | nucleotideColors         | Color table for nucleotides in sequence an bam tracks.  Object with keys "A", "C", "T", "G", and "N"                                                                                                                                                                                                                                                               |         |
 | showSampleNames          | Controls display of sample names for track types that support them (VCF with genotypes, SEG, and MUT)                                                                                                                                                                                                                                                              |         |
-| sampleinfo          | An array of sample info objects. Optional. See object details below and [Sample Information](../SampleInfo/) for further information.                                                                                                                                                                                                                                                              |         |
+| sampleinfo          | A sample info object, or an array of sample info objects. Optional. See object details below and [Sample Information](../SampleInfo/) for further information.                                                                                                                                                                                                     |         |
 
 #### _sampleinfo_ object details
 
-A sample info object can contain a single property ```url``` which can be a URL or a local File blob. For example:
+A sample info object can contain a single property ```url```, a URL to a [sample information file](SampleInfo.md)
 
 ```
 { "url": "https://mydata.com/test/vcf/sampleinfo/integrated_call_samples.panel"}

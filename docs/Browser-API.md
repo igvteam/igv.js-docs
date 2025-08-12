@@ -137,7 +137,7 @@ Load sample information.
 browser.loadSampleInfo(sampleinfoObject)
 ```
 
-The sampleinfo object can contain a single property, *url*, which can be a URL or a local File blob. For example
+The sampleinfo object can contain a single property, a *url* to a [sample information file](SampleInfo.md). For example
 
 ```js
 browser.loadSampleInfo({"url": "https://mydata.com/test/vcf/sampleinfo/integrated_call_samples.panel"})
