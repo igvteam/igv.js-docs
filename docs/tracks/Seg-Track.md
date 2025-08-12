@@ -50,3 +50,4 @@ The segmented data file format is the output of the Circular Binary Segmentation
 | isLog       | boolean | True if values are  2 * log2(copyNumber / 2).                                                                                                                                | _computed_ |
 | displayMode | string  | One of "EXPANDED", "SQUISHED", or "FILL".  The value affects the sample height (height of each row).  The "FILL" value will result in all samples visible in the track view. | "EXPANDED" |
 | sort        | object  | An object specifying initial sort order(options).  See example below.                                                                                                        |            |
+| groupBy     | string  | A sample attribute name to group samples by.  If specified the samples will be grouped by the property value.  Applicable if sample information has been loaded.             |            |

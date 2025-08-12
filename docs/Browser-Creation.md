@@ -62,6 +62,38 @@ All fields are optional except one of either **genome** or **reference**.
 | loadDefaultGenomes       | Boolean indicating whether or not the igv.js default genome list should be loaded.   Currently this list is loaded from                                                                                                                                                                                                                                            | true    |
 | nucleotideColors         | Color table for nucleotides in sequence an bam tracks.  Object with keys "A", "C", "T", "G", and "N"                                                                                                                                                                                                                                                               |         |
 | showSampleNames          | Controls display of sample names for track types that support them (VCF with genotypes, SEG, and MUT)                                                                                                                                                                                                                                                              |         |
+| sampleinfo          | A sample info object, or an array of sample info objects. Optional. See object details below and [Sample Information](../SampleInfo/) for further information.                                                                                                                                                                                                     |         |
+
+#### _sampleinfo_ object details
+
+A sample info object can contain a single property ```url```, a URL to a [sample information file](SampleInfo.md)
+
+```
+{ "url": "https://mydata.com/test/vcf/sampleinfo/integrated_call_samples.panel"}
+```                
+
+Alternatively, a sample object can contain key value pairs for sample names and the attribute values. For example, the following contains 2 samples and their values for 6 attributes.
+
+```json
+{
+    "BRISK_p_STY37_Mapping250K_Sty_A09_147618": {
+            "Subtype": "Neural",
+            "sil_width": -0.069669747,
+            "GENDER": "MALE",
+            "KarnScore": null,
+            "AgeAtFirstDiagnosis": null,
+            "Secondary|or|Recurrent": "No"
+    },
+    "BRISK_p_STY37_Mapping250K_Sty_B12_147668": {
+            "Subtype": "Proneural",
+            "sil_width": 0.01155373,
+            "GENDER": "FEMALE",
+            "KarnScore": 90.0,
+            "AgeAtFirstDiagnosis": 42.0,
+            "Secondary|or|Recurrent": "Rec"
+    }
+}
+```
 
 #### _search_ object details
 
